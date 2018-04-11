@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tabs">
+        <item name="news_top">头条</item>
+        <item name="news_shehui">社会</item>
+        <item name="news_guonei">国内</item>
+        <item name="news_guoji">国际</item>
+        <item name="news_yule">娱乐</item>
+        <item name="news_tiyu">体育</item>
+        <item name="news_junshi">军事</item>
+    </string-array>
+</resources>

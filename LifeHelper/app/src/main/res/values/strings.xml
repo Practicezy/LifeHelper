@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">My Life</string>
+    <string name="title_news">新闻</string>
+    <string name="title_life">生活</string>
+    <string name="title_unitils">工具</string>
+    <string name="default_title">这是一个默认标题</string>
+    <string name="default_src">默认来源</string>
+    <string name="default_date">2018-4-4 15:39:28</string>
+    <string name="news_top">top</string>
+    <string name="news_shehui">shehui</string>
+    <string name="news_guonei">guonei</string>
+    <string name="news_guoji">guoji</string>
+    <string name="news_yule">yule</string>
+    <string name="news_tiyu">tiyu</string>
+    <string name="news_junshi">junshi</string>
+</resources>
