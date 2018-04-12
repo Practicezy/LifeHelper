@@ -13,4 +13,5 @@
     <string name="news_yule">yule</string>
     <string name="news_tiyu">tiyu</string>
     <string name="news_junshi">junshi</string>
+    <string name="loading">努力加载中。。。</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.r.lifehelper;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public Fragment getItem(int position) {
                 switch (position){
                     case 0:
-                        return NewsFragment.newInstance();
+                        return new NewsFragment();
                     case 1:
                         return LifeFragment.newInstance();
                     case 2:

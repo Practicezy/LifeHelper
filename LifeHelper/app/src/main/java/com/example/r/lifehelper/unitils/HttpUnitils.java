@@ -1,4 +1,4 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.unitils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,7 +35,7 @@ public class HttpUnitils {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             connection.disconnect();
         }
         return null;

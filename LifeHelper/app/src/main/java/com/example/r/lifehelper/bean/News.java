@@ -1,4 +1,4 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.bean;
 
 public class News {
     private String mTitle,mSrc,mContent,mImageUrl,mDate;

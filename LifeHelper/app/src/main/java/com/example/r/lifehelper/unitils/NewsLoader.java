@@ -1,7 +1,9 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.unitils;
 
 import android.os.AsyncTask;
-import android.util.Log;
+
+import com.example.r.lifehelper.bean.News;
+import com.example.r.lifehelper.unitils.HttpUnitils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
