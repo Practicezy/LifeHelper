@@ -8,17 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class UnitilsFragment extends Fragment {
-    private static UnitilsFragment sUnitilsFragment;
-
-    public static UnitilsFragment newInstance(){
-        if (sUnitilsFragment == null){
-            sUnitilsFragment = new UnitilsFragment();
-        }
-        Bundle args = new Bundle();
-        sUnitilsFragment.setArguments(args);
-        return sUnitilsFragment;
-    }
+public class IdealFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_unitils"
-        android:icon="@drawable/ic_tab_unitils"
-        android:title="@string/title_unitils" />
+        android:icon="@drawable/ic_tab_ideal"
+        android:title="@string/title_ideal" />
 
 </menu>

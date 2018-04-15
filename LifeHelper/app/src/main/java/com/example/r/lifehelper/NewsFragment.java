@@ -5,9 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,17 +28,32 @@ public class NewsFragment extends Fragment {
     private List<News> mNewsList;
     private NewsAdapter mAdapter;
     private TabLayout mTabLayout;
+    private static final String TAG = "NewsFragment";
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*双击标题返回顶部*/
+        DoubleClickToolbar();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_list_news,container,false);
+        /*新闻标签初始化*/
+        setupTabLayout();
 
+        /*列表初始化*/
+        rvNews = mView.findViewById(R.id.rv_fragment_news);
+        rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
+        setupAdapter(getResources().getString(R.string.news_top));
+        return mView;
+    }
+
+    /*根据给定的字符串来设置新闻页标签*/
+    private void setupTabLayout() {
         mTabLayout = mView.findViewById(R.id.tab_layout);
         String[] tabs = getResources().getStringArray(R.array.tabs);
         int i = 0;
@@ -57,19 +77,27 @@ public class NewsFragment extends Fragment {
 
             }
         });
-
-        rvNews = mView.findViewById(R.id.rv_fragment_news);
-        rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
-        setupAdapter(getResources().getString(R.string.news_top));
-        return mView;
     }
 
+    /*重新加载界面后刷新UI*/
     @Override
     public void onResume() {
         mView.invalidate();
         super.onResume();
     }
 
+    /*设置双击标题事件*/
+    private void DoubleClickToolbar() {
+        View view = getActivity().findViewById(R.id.my_toolbar);
+        view.setOnTouchListener(new onDubleClickListener(new onDubleClickListener.DoubleClickCallback() {
+            @Override
+            public void onDoubleClick() {
+                rvNews.scrollToPosition(0);
+            }
+        }));
+    }
+
+    /*根据标签名来刷新数据*/
     private void switchTab(TabLayout.Tab tab) {
         switch (tab.getPosition()){
             case 0:
@@ -96,6 +124,7 @@ public class NewsFragment extends Fragment {
         }
     }
 
+    /*根据给定的字符串来刷新列表数据*/
     private void setupAdapter(String urlSpec) {
         mNewsList = new NewsLoader().loadNewsByAsyncTask(urlSpec);
         if(mAdapter == null){

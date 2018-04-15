@@ -17,15 +17,17 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
+    /*初始化三种类型*/
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_NORMAL = 1;
     private static final int TYPE_SPECIAL = 2;
+
     private Context mContext;
     private List<News> mNewsList;
-    private static final String TAG = "NewsAdapter";
 
 
     public NewsAdapter(Context context, List<News> newsList) {
@@ -33,6 +35,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         mNewsList = newsList;
     }
 
+    /*根据位置设置三种类型*/
     @Override
     public int getItemViewType(int position) {
         if (position == 0){
@@ -46,6 +49,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         }
     }
 
+    /*根据类型创建不同的ViewHolder */
     @NonNull
     @Override
     public NewsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -53,31 +57,36 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         switch (viewType){
             case TYPE_HEADER:
                 View view0 = LayoutInflater.from(mContext).inflate(R.layout.
-                        item0_fragment_list_news,parent,false);
+                        item0_list_news,parent,false);
                 holder = new NewsHolder(view0);
                 break;
             case TYPE_NORMAL:
                 View view1 = LayoutInflater.from(mContext).inflate(R.layout.
-                        item1_fragment_list_news,parent,false);
+                        item1_list_news,parent,false);
                 holder = new NewsHolder(view1);
                 break;
             case TYPE_SPECIAL:
                 View view2 = LayoutInflater.from(mContext).inflate(R.layout.
-                        item2_fragment_list_news,parent,false);
+                        item2_list_news,parent,false);
                 holder = new NewsHolder(view2);
                 break;
         }
         return holder;
     }
 
+    /*绑定数据*/
     @Override
     public void onBindViewHolder(@NonNull NewsHolder holder, int position) {
         final News news = mNewsList.get(position);
+        /*对banner进行初始化和赋值*/
         if (position == 0){
             holder.bindBanner(mNewsList);
         }else {
+            /*对具体的新闻项进行赋值*/
             holder.bindHolder(news);
             holder.bindImage(news);
+
+            /*设置新闻项的点击事件*/
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -88,6 +97,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         }
     }
 
+    /*刷新整个列表*/
     public void updateAdapter(List<News> newsList){
         mNewsList = newsList;
         notifyDataSetChanged();
@@ -99,45 +109,45 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     }
 
     class NewsHolder extends RecyclerView.ViewHolder{
-        private Banner mBanner;
-        private TextView tvTitle,tvDate,tvSrc;
-        private ImageView ivImg;
+        private Banner mNewsBanner;
+        private TextView tvNewsTitle, tvNewsDate, tvNewsSrc;
+        private ImageView ivNewsImg;
         private News mNews;
         private List<News> mNewsList;
 
-        public NewsHolder(View itemView) {
+        private NewsHolder(View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.item_title);
-            tvSrc = itemView.findViewById(R.id.item_src);
-            tvDate = itemView.findViewById(R.id.item_date);
-            ivImg = itemView.findViewById(R.id.item_img);
-            mBanner = itemView.findViewById(R.id.item_banner);
+            tvNewsTitle = itemView.findViewById(R.id.item_title);
+            tvNewsSrc = itemView.findViewById(R.id.item_src);
+            tvNewsDate = itemView.findViewById(R.id.item_date);
+            ivNewsImg = itemView.findViewById(R.id.item_img);
+            mNewsBanner = itemView.findViewById(R.id.news_item_banner);
         }
 
         private void bindHolder(News news){
             mNews = news;
-            tvTitle.setText(mNews.getTitle());
-            tvSrc.setText(mNews.getSrc());
-            tvDate.setText(mNews.getDate());
+            tvNewsTitle.setText(mNews.getTitle());
+            tvNewsSrc.setText(mNews.getSrc());
+            tvNewsDate.setText(mNews.getDate());
         }
 
         private void bindImage(News news){
             mNews = news;
-            ivImg.setTag(mNews.getImageUrl());
+            ivNewsImg.setTag(mNews.getImageUrl());
             ImageLoader imageLoader = new ImageLoader(mContext);
-            imageLoader.loadBitmapByThread(ivImg,mNews.getImageUrl(),1000,1000);
+            imageLoader.loadBitmapByThread(ivNewsImg,mNews.getImageUrl(),1000,1000);
         }
 
-        private void bindBanner(List<News> newsList){
+        private void bindBanner(final List<News> newsList){
             mNewsList = newsList;
-            mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
-            mBanner.setImageLoader(new MyBannerImageLoader());
+            mNewsBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
+            mNewsBanner.setImageLoader(new MyBannerImageLoader());
             List<String> images = initImages(mNewsList);
-            mBanner.setImages(images);
+            mNewsBanner.setImages(images);
             final List<String> titles = initTitles(mNewsList);
-            mBanner.setBannerTitles(titles);
-            mBanner.setDelayTime(5000);
-            mBanner.setOnBannerListener(new OnBannerListener() {
+            mNewsBanner.setBannerTitles(titles);
+            mNewsBanner.setDelayTime(5000);
+            mNewsBanner.setOnBannerListener(new OnBannerListener() {
                 @Override
                 public void OnBannerClick(int position) {
                     for (News news:mNewsList
@@ -149,24 +159,24 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
                     }
                 }
             });
-            mBanner.start();
+            mNewsBanner.start();
         }
 
         @NonNull
         private List<String> initImages(List<News> newsList) {
             List<String> images = new ArrayList<>();
-            images.add(newsList.get(10).getImageUrl());
-            images.add(newsList.get(11).getImageUrl());
-            images.add(newsList.get(12).getImageUrl());
+            images.add(newsList.get(15).getImageUrl());
+            images.add(newsList.get(20).getImageUrl());
+            images.add(newsList.get(25).getImageUrl());
             return images;
         }
 
         @NonNull
         private List<String> initTitles(List<News> newsList) {
             List<String> titles = new ArrayList<>();
-            titles.add(newsList.get(10).getTitle());
-            titles.add(newsList.get(11).getTitle());
-            titles.add(newsList.get(12).getTitle());
+            titles.add(newsList.get(15).getTitle());
+            titles.add(newsList.get(20).getTitle());
+            titles.add(newsList.get(25).getTitle());
             return titles;
         }
 

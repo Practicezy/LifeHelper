@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
@@ -16,6 +17,7 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 
 public class NewsActivity extends AppCompatActivity {
+    private Toolbar mToolbar;
     private WebView wvNews;
     private ProgressDialog mProgressDialog;
     private static final String EXTRA_NEWS = "news_url";
@@ -31,6 +33,10 @@ public class NewsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_news);
+        mToolbar = findViewById(R.id.news_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         wvNews = findViewById(R.id.wv_news);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

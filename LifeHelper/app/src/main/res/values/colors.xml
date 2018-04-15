@@ -4,7 +4,17 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorLightPink">#FFB6C1</color>
+    <color name="colorLightAccent">#80FF4081</color>
     <color name="colorCrimson">#DC143C</color>
     <color name="colorLightBlack">#60000000</color>
-    <color name="colorStarBlue">#800000FF</color>
+    <color name="colorStarBlue">#800085FF</color>
+    <color name="colorWheat">#F5DEB3</color>
+    <color name="colorBrulyWood">#DEB887</color>
+    <color name="colorLightBrulyWood">#40DEB887</color>
+    <color name="colorLightWheat">#70F5DEB3</color>
+    <color name="colorLightRed">#70FF0000</color>
+    <color name="colorLightGreen">#7000FF00</color>
+    <color name="colorLightDarkBlue">#700000FF</color>
+    <color name="colorLightYellow">#70FFFF00</color>
+    <color name="colorLightBlue">#7000FFFF</color>
 </resources>

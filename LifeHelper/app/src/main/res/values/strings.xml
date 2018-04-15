@@ -2,7 +2,7 @@
     <string name="app_name">My Life</string>
     <string name="title_news">新闻</string>
     <string name="title_life">生活</string>
-    <string name="title_unitils">工具</string>
+    <string name="title_ideal">态度</string>
     <string name="default_title">这是一个默认标题</string>
     <string name="default_src">默认来源</string>
     <string name="default_date">2018-4-4 15:39:28</string>
@@ -14,4 +14,9 @@
     <string name="news_tiyu">tiyu</string>
     <string name="news_junshi">junshi</string>
     <string name="loading">努力加载中。。。</string>
+    <string name="today">历史上的今天</string>
+    <string name="today_intro">以史为镜，可以知兴替</string>
+    <string name="book">多读书，读好书</string>
+    <string name="film">爱电影，爱生活</string>
+    <string name="life_picture">生活的色彩</string>
 </resources>

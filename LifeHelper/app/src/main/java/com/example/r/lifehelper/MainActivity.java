@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    private Toolbar mToolbar;
     private BottomNavigationView mBottomNavigationView;
     private ViewPager mViewPager;
     private MenuItem mMenuItem;
@@ -20,8 +22,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*初始化状态栏*/
+        initToolbar();
 
+        /*初始化底部导航栏*/
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
+        /*设置viewpager效果*/
+        initViewpager();
+        /*设置标签选择事件*/
+        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+    }
+
+    private void initViewpager() {
         mViewPager = findViewById(R.id.vp_fragment_container);
         mViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -30,9 +43,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     case 0:
                         return new NewsFragment();
                     case 1:
-                        return LifeFragment.newInstance();
+                        return new LifeFragment();
                     case 2:
-                        return UnitilsFragment.newInstance();
+                        return new IdealFragment();
                 }
                 return null;
             }
@@ -64,8 +77,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             }
         });
-        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+        mViewPager.setCurrentItem(1);
+    }
 
+    private void initToolbar() {
+        mToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(mToolbar);
     }
 
     @Override
