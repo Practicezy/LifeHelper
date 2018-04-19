@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".NewsActivity"
             android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".LifeBookActivity"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

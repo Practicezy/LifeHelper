@@ -1,4 +1,4 @@
-package com.example.r.lifehelper.unitils;
+package com.example.r.lifehelper.utils;
 
 import android.os.AsyncTask;
 
@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutionException;
 
 public class LifeBannerLoader {
 
+    /*加载LifeFragent中的banner*/
     public static List<String> loadBannerByAsyncTask(){
         LifeBannerAsyncTask asyncTask = new LifeBannerAsyncTask();
         asyncTask.execute("https://pixabay.com/api/?key=8250871-a5cbd2dc769e63d6b5fe7138a&category=life&image_type=all&pretty=true");
@@ -30,7 +31,7 @@ public class LifeBannerLoader {
         @Override
         protected List<String> doInBackground(String... strings) {
             String urlSpec = strings[0];
-            String url = HttpUnitils.getUrlString(urlSpec);
+            String url = HttpUtils.getUrlString(urlSpec);
             return parseUrl(url);
         }
 

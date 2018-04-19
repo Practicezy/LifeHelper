@@ -1,4 +1,4 @@
-package com.example.r.lifehelper.unitils;
+package com.example.r.lifehelper.utils;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,8 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class HttpUnitils {
+public class HttpUtils {
 
+    /*根据给定的url获得比特流*/
     @Nullable
     public static byte[] getByteArrayFromUrl(String urlSpec){
         HttpURLConnection connection = null;
@@ -41,6 +42,7 @@ public class HttpUnitils {
         return null;
     }
 
+    /*根据url解析出字符串*/
     @NonNull
     public static String getUrlString(String urlSpec){
         return new String(getByteArrayFromUrl(urlSpec));

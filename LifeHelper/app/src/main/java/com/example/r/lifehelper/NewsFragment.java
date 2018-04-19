@@ -1,23 +1,23 @@
 package com.example.r.lifehelper;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.r.lifehelper.adapter.NewsAdapter;
 import com.example.r.lifehelper.bean.News;
-import com.example.r.lifehelper.unitils.NewsLoader;
+import com.example.r.lifehelper.utils.NewsLoader;
+import com.example.r.lifehelper.utils.onDubleClickListener;
 
 import java.util.List;
 
@@ -28,14 +28,12 @@ public class NewsFragment extends Fragment {
     private List<News> mNewsList;
     private NewsAdapter mAdapter;
     private TabLayout mTabLayout;
-    private static final String TAG = "NewsFragment";
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /*双击标题返回顶部*/
-        DoubleClickToolbar();
+        initToolbar();
     }
 
     @Nullable
@@ -87,9 +85,9 @@ public class NewsFragment extends Fragment {
     }
 
     /*设置双击标题事件*/
-    private void DoubleClickToolbar() {
-        View view = getActivity().findViewById(R.id.my_toolbar);
-        view.setOnTouchListener(new onDubleClickListener(new onDubleClickListener.DoubleClickCallback() {
+    private void initToolbar() {
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setOnTouchListener(new onDubleClickListener(new onDubleClickListener.DoubleClickCallback() {
             @Override
             public void onDoubleClick() {
                 rvNews.scrollToPosition(0);

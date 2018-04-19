@@ -1,11 +1,18 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorLightPink</item>
-        <item name="colorPrimaryDark">@color/colorLightRed</item>
+        <item name="colorPrimaryDark">@color/text</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/window_bg</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 
+    <style name="TabLayoutTextSize">
+        <item name="android:textSize">@dimen/text_22_sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/font_lucia</item>
+    </style>
 </resources>

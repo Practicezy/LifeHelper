@@ -1,9 +1,8 @@
-package com.example.r.lifehelper.unitils;
+package com.example.r.lifehelper.utils;
 
 import android.os.AsyncTask;
 
 import com.example.r.lifehelper.bean.News;
-import com.example.r.lifehelper.unitils.HttpUnitils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,8 +13,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class NewsLoader {
-    private static final String TAG = "NewsLoader";
-
+    /*通过asyncTask加载新闻页*/
     public List<News> loadNewsByAsyncTask(String urlSpec){
         List<News> newsList = new ArrayList<>();
         NewsAasynctask newsAasynctask = new NewsAasynctask();
@@ -35,7 +33,7 @@ public class NewsLoader {
         @Override
         protected List<News> doInBackground(String... strings) {
             String url = strings[0];
-            String urlString = HttpUnitils.getUrlString(url);
+            String urlString = HttpUtils.getUrlString(url);
             List<News> newsList = parseUrl(urlString);
             return newsList;
         }

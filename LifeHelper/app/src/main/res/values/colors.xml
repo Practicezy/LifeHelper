@@ -6,7 +6,7 @@
     <color name="colorLightPink">#FFB6C1</color>
     <color name="colorLightAccent">#80FF4081</color>
     <color name="colorCrimson">#DC143C</color>
-    <color name="colorLightBlack">#60000000</color>
+    <color name="colorLightBlack">#70000000</color>
     <color name="colorStarBlue">#800085FF</color>
     <color name="colorWheat">#F5DEB3</color>
     <color name="colorBrulyWood">#DEB887</color>
@@ -17,4 +17,8 @@
     <color name="colorLightDarkBlue">#700000FF</color>
     <color name="colorLightYellow">#70FFFF00</color>
     <color name="colorLightBlue">#7000FFFF</color>
+    <color name="background">#f7f7f7</color>
+    <color name="cv_bg">#fdfdfd</color>
+    <color name="window_bg">#ffffff</color>
+    <color name="text">#000000</color>
 </resources>

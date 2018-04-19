@@ -1,4 +1,4 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,14 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.r.lifehelper.NewsActivity;
+import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.bean.News;
-import com.example.r.lifehelper.unitils.ImageLoader;
+import com.example.r.lifehelper.utils.ImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
@@ -118,8 +119,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         private NewsHolder(View itemView) {
             super(itemView);
             tvNewsTitle = itemView.findViewById(R.id.item_title);
-            tvNewsSrc = itemView.findViewById(R.id.item_src);
-            tvNewsDate = itemView.findViewById(R.id.item_date);
+            tvNewsSrc = itemView.findViewById(R.id.item_book_author);
+            tvNewsDate = itemView.findViewById(R.id.item_book_summary);
             ivNewsImg = itemView.findViewById(R.id.item_img);
             mNewsBanner = itemView.findViewById(R.id.news_item_banner);
         }

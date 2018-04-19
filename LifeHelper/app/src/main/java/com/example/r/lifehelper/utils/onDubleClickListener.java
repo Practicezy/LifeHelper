@@ -1,4 +1,4 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.utils;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +23,7 @@ public class onDubleClickListener implements View.OnTouchListener {
         mCallback = callback;
     }
 
+    /*具体的双击事件*/
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (MotionEvent.ACTION_DOWN == motionEvent.getAction()){

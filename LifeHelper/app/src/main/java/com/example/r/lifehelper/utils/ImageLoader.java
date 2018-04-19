@@ -1,4 +1,4 @@
-package com.example.r.lifehelper.unitils;
+package com.example.r.lifehelper.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -19,6 +19,12 @@ public class ImageLoader {
 
     public ImageLoader(Context context) {
         mContext = context;
+
+        /*初始化内存缓存*/
+        initLruCache();
+    }
+
+    private void initLruCache() {
         int maxMemory = (int) (Runtime.getRuntime().maxMemory()/1024);
         int cacheSize = maxMemory/4;
 
@@ -30,25 +36,19 @@ public class ImageLoader {
         };
     }
 
+    /*添加图片到内存缓存*/
     private void addBitmaptoMemoryCache(String key,Bitmap value){
         if (getBitmapFromMemoryCache(key) == null){
             mMemoryCache.put(key, value);
         }
     }
 
+    /*根据给定的url值来获得缓存中的图片*/
     private Bitmap getBitmapFromMemoryCache(String key){
         return mMemoryCache.get(key);
     }
 
-    @SuppressLint("HandlerLeak")
-    private Handler myHandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-                mImageView.setImageBitmap((Bitmap) msg.obj);
-        }
-    };
-
+    /*通过子线程来加载图片*/
     public void loadBitmapByThread(final ImageView imageView, final String urlSpec, final int reqWidth, final int reqHeight){
         mImageView = imageView;
         this.urlSpec = urlSpec;
@@ -60,7 +60,7 @@ public class ImageLoader {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        byte[] imgStream = HttpUnitils.getByteArrayFromUrl(urlSpec);
+                        byte[] imgStream = HttpUtils.getByteArrayFromUrl(urlSpec);
                         Bitmap bitmap = getBitmapFromUrl(imgStream,reqWidth, reqHeight);
                         addBitmaptoMemoryCache(urlSpec,bitmap);
                         Message msg = myHandler.obtainMessage();
@@ -72,6 +72,14 @@ public class ImageLoader {
         }
 
     }
+    @SuppressLint("HandlerLeak")
+    private Handler myHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mImageView.setImageBitmap((Bitmap) msg.obj);
+        }
+    };
 
     private static Bitmap getBitmapFromUrl(byte[] data, int reqWidth, int reqHeight){
         BitmapFactory.Options options = new BitmapFactory.Options();

@@ -1,7 +1,5 @@
 package com.example.r.lifehelper;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,9 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private Toolbar mToolbar;
+    private TextView mToolbarTitle;
     private BottomNavigationView mBottomNavigationView;
     private ViewPager mViewPager;
     private MenuItem mMenuItem;
@@ -77,11 +77,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             }
         });
-        mViewPager.setCurrentItem(1);
+        mViewPager.setCurrentItem(0);
     }
 
     private void initToolbar() {
-        mToolbar = findViewById(R.id.my_toolbar);
+        mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle("");
+        mToolbarTitle = findViewById(R.id.toolbar_title);
+        mToolbarTitle.setText(getResources().getString(R.string.app_name));
         setSupportActionBar(mToolbar);
     }
 
@@ -94,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.navigation_life:
                 mViewPager.setCurrentItem(1);
                 return true;
-            case R.id.navigation_unitils:
+            case R.id.navigation_ideal:
                 mViewPager.setCurrentItem(2);
                 return true;
         }
