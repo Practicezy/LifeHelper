@@ -42,12 +42,15 @@ public class NewsFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_list_news,container,false);
         /*新闻标签初始化*/
         setupTabLayout();
-
         /*列表初始化*/
+        initList();
+        return mView;
+    }
+
+    private void initList() {
         rvNews = mView.findViewById(R.id.rv_fragment_news);
         rvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
         setupAdapter(getResources().getString(R.string.news_top));
-        return mView;
     }
 
     /*根据给定的字符串来设置新闻页标签*/

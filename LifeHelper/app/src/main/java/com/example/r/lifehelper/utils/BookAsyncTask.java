@@ -28,11 +28,12 @@ public class BookAsyncTask extends AsyncTask<String,Void,List<Book>> {
                 Book book = new Book();
                 book.setId(object.getInt("id"));
                 book.setTitle(object.getString("title"));
-                JSONArray authorArray = object.getJSONArray("author");
-                JSONObject authorObject = authorArray.getJSONObject(0);
-                book.setAuthor(authorObject.toString());
-                JSONObject scoreObject = object.getJSONObject("rating");
-                book.setScore(Float.parseFloat(scoreObject.getString("average")));
+                book.setAuthor(object.getString("author"));
+//                JSONArray authorArray = object.getJSONArray("author");
+//                JSONObject authorObject = authorArray.getJSONObject(0);
+//                book.setAuthor(authorObject.toString());
+//                JSONObject scoreObject = object.getJSONObject("rating");
+//                book.setScore(Float.parseFloat(scoreObject.getString("average")));
                 book.setAuthorIntro(object.getString("author_intro"));
                 book.setSummary(object.getString( "summary"));
                 book.setImageUrl(object.getString("image"));

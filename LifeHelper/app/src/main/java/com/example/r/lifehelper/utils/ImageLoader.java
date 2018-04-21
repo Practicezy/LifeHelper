@@ -49,57 +49,57 @@ public class ImageLoader {
     }
 
     /*通过子线程来加载图片*/
-    public void loadBitmapByThread(final ImageView imageView, final String urlSpec, final int reqWidth, final int reqHeight){
+    public void loadBitmapByThread(ImageView imageView, final String urlSpec, final int reqWidth, final int reqHeight){
         mImageView = imageView;
         this.urlSpec = urlSpec;
-        if (mImageView.getTag().equals(urlSpec)){
-            Bitmap bitmap = getBitmapFromMemoryCache(urlSpec);
-            if (bitmap != null){
-                mImageView.setImageBitmap(bitmap);
-            }else {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        byte[] imgStream = HttpUtils.getByteArrayFromUrl(urlSpec);
-                        Bitmap bitmap = getBitmapFromUrl(imgStream,reqWidth, reqHeight);
-                        addBitmaptoMemoryCache(urlSpec,bitmap);
-                        Message msg = myHandler.obtainMessage();
-                        msg.obj = bitmap;
-                        myHandler.sendMessage(msg);
-                    }
-                }).start();
-            }
+        Bitmap bitmap = getBitmapFromMemoryCache(urlSpec);
+        if (bitmap != null){
+            mImageView.setImageBitmap(bitmap);
+        }else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    byte[] imgStream = HttpUtils.getByteArrayFromUrl(urlSpec);
+                    Bitmap bitmap = getBitmapFromUrl(imgStream, reqWidth, reqHeight);
+                    addBitmaptoMemoryCache(urlSpec, bitmap);
+                    Message msg = myHandler.obtainMessage();
+                    msg.obj = bitmap;
+                    myHandler.sendMessage(msg);
+                }
+            }).start();
         }
-
     }
+
     @SuppressLint("HandlerLeak")
-    private Handler myHandler = new Handler(){
+    private Handler myHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mImageView.setImageBitmap((Bitmap) msg.obj);
+            if (mImageView.getTag() != null && mImageView.getTag().equals(urlSpec)) {
+                mImageView.setImageBitmap((Bitmap) msg.obj);
+            }
         }
     };
 
-    private static Bitmap getBitmapFromUrl(byte[] data, int reqWidth, int reqHeight){
+    private static Bitmap getBitmapFromUrl(byte[] data, int reqWidth, int reqHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeByteArray(data,0,data.length,options);
+        BitmapFactory.decodeByteArray(data, 0, data.length, options);
 
         options.inSampleSize = caculateInSampleSize(options, reqWidth, reqHeight);
 
         options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeByteArray(data, 0,data.length,options);
+        return BitmapFactory.decodeByteArray(data, 0, data.length, options);
     }
 
-    private static int caculateInSampleSize(BitmapFactory.Options options,int reqWidth,int reqHeight){
+    private static int caculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         int width = options.outWidth;
         int height = options.outHeight;
         int inSampleSize = 1;
 
-        if (width > reqWidth || height > reqHeight){
+        if (width > reqWidth || height > reqHeight) {
             inSampleSize = 2;
-            while ((width/inSampleSize) > reqWidth  && (height/inSampleSize) > reqHeight){
+            while ((width / inSampleSize) > reqWidth && (height / inSampleSize) > reqHeight) {
                 inSampleSize *= 2;
             }
         }

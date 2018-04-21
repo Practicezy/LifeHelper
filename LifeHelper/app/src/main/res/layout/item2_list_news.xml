@@ -18,7 +18,7 @@
             android:layout_height="200dp"
             android:layout_margin="8dp"
             android:src="@drawable/life_bg"
-            android:scaleType="fitXY"/>
+            android:scaleType="centerCrop"/>
         <TextView
             android:id="@+id/item_title"
             android:layout_marginLeft="15dp"
