@@ -1,25 +1,7 @@
 package com.example.r.lifehelper.bean;
 
 public class Book {
-    private int mId;
-    private float mScore;
-    private String mTitle,mAuthor,mSummary,mImageUrl,mAuthorIntro;
-
-    public int getId() {
-        return mId;
-    }
-
-    public void setId(int id) {
-        mId = id;
-    }
-
-    public float getScore() {
-        return mScore;
-    }
-
-    public void setScore(float score) {
-        mScore = score;
-    }
+    private String mTitle,mImageUrl, mUrl,mAuthor,mSummary;
 
     public String getTitle() {
         return mTitle;
@@ -27,6 +9,22 @@ public class Book {
 
     public void setTitle(String title) {
         mTitle = title;
+    }
+
+    public String getImageUrl() {
+        return mImageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        mImageUrl = imageUrl;
+    }
+
+    public String getUrl() {
+        return mUrl;
+    }
+
+    public void setUrl(String url) {
+        mUrl = url;
     }
 
     public String getAuthor() {
@@ -43,21 +41,5 @@ public class Book {
 
     public void setSummary(String summary) {
         mSummary = summary;
-    }
-
-    public String getImageUrl() {
-        return mImageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        mImageUrl = imageUrl;
-    }
-
-    public String getAuthorIntro() {
-        return mAuthorIntro;
-    }
-
-    public void setAuthorIntro(String authorIntro) {
-        mAuthorIntro = authorIntro;
     }
 }

@@ -38,9 +38,10 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
         Book book = mBookList.get(position);
         holder.tvTile.setText(book.getTitle());
         holder.tvAuthor.setText(book.getAuthor());
+        holder.tvSummary.setText(book.getSummary());
         holder.ivImg.setTag(book.getImageUrl());
         ImageLoader imageLoader = new ImageLoader(mContext);
-        imageLoader.loadBitmapByThread(holder.ivImg,book.getImageUrl(),1000,1000);
+        imageLoader.loadBitmapByThread(holder.ivImg,book.getImageUrl(),300,300);
     }
 
     @Override
@@ -56,12 +57,13 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
 
     class BookListHolder extends RecyclerView.ViewHolder{
         private ImageView ivImg;
-        private TextView tvTile, tvAuthor;
+        private TextView tvTile,tvAuthor,tvSummary;
         public BookListHolder(View itemView) {
             super(itemView);
             ivImg = itemView.findViewById(R.id.book_image_large);
             tvTile = itemView.findViewById(R.id.book_title);
             tvAuthor = itemView.findViewById(R.id.book_author);
+            tvSummary = itemView.findViewById(R.id.book_summary);
         }
     }
 }

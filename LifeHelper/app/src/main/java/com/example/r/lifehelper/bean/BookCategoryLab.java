@@ -34,6 +34,16 @@ public class BookCategoryLab {
         return mBookCategories;
     }
 
+    public BookCategory getBookCategory(String category){
+        for (BookCategory bookCategory:mBookCategories
+             ) {
+            if (bookCategory.getCategory().equals(category)){
+                return bookCategory;
+            }
+        }
+        return null;
+    }
+
     private void initBookCategories(String category,int IconId,String url) {
         BookCategory bookCategory = new BookCategory();
         bookCategory.setCategory(category);

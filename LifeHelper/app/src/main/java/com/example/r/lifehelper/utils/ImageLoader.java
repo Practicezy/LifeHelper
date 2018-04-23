@@ -9,6 +9,8 @@ import android.os.Message;
 import android.util.LruCache;
 import android.widget.ImageView;
 
+import com.example.r.lifehelper.R;
+
 
 public class ImageLoader {
     private Context mContext;
@@ -26,7 +28,7 @@ public class ImageLoader {
 
     private void initLruCache() {
         int maxMemory = (int) (Runtime.getRuntime().maxMemory()/1024);
-        int cacheSize = maxMemory/4;
+        int cacheSize = maxMemory/8;
 
         mMemoryCache = new LruCache<String, Bitmap>(cacheSize){
             @Override
@@ -52,7 +54,7 @@ public class ImageLoader {
     public void loadBitmapByThread(ImageView imageView, final String urlSpec, final int reqWidth, final int reqHeight){
         mImageView = imageView;
         this.urlSpec = urlSpec;
-        Bitmap bitmap = getBitmapFromMemoryCache(urlSpec);
+        final Bitmap bitmap = getBitmapFromMemoryCache(urlSpec);
         if (bitmap != null){
             mImageView.setImageBitmap(bitmap);
         }else {
@@ -60,7 +62,12 @@ public class ImageLoader {
                 @Override
                 public void run() {
                     byte[] imgStream = HttpUtils.getByteArrayFromUrl(urlSpec);
-                    Bitmap bitmap = getBitmapFromUrl(imgStream, reqWidth, reqHeight);
+                    Bitmap bitmap = null;
+                    if (imgStream == null){
+                        bitmap = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.nocover);
+                    }else {
+                        bitmap = getBitmapFromUrl(imgStream, reqWidth, reqHeight);
+                    }
                     addBitmaptoMemoryCache(urlSpec, bitmap);
                     Message msg = myHandler.obtainMessage();
                     msg.obj = bitmap;
@@ -70,6 +77,7 @@ public class ImageLoader {
         }
     }
 
+    /*从子线程获得的图片在主线程更新UI*/
     @SuppressLint("HandlerLeak")
     private Handler myHandler = new Handler() {
         @Override
@@ -81,6 +89,7 @@ public class ImageLoader {
         }
     };
 
+    /*从URL中加载图片*/
     private static Bitmap getBitmapFromUrl(byte[] data, int reqWidth, int reqHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
@@ -92,6 +101,7 @@ public class ImageLoader {
         return BitmapFactory.decodeByteArray(data, 0, data.length, options);
     }
 
+    /*按需对图片进行裁剪*/
     private static int caculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         int width = options.outWidth;
         int height = options.outHeight;

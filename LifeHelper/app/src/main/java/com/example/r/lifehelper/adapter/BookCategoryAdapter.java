@@ -17,7 +17,6 @@ import java.util.List;
 public class BookCategoryAdapter extends BaseAdapter {
     private List<BookCategory> mBookCategories;
     private Context mContext;
-    private static final String TAG = "BookCategoryAdapter";
 
     public BookCategoryAdapter(List<BookCategory> bookCategories, Context context) {
         mBookCategories = bookCategories;
@@ -50,7 +49,6 @@ public class BookCategoryAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         BookCategory bookCategory = mBookCategories.get(i);
-        Log.i(TAG, "getView: " + bookCategory.getCategory());
         viewHolder.tvCategory.setText(bookCategory.getCategory());
         viewHolder.ivCategory.setImageDrawable(mContext.getResources().getDrawable(bookCategory.getIconId()));
         return convertView;
@@ -59,10 +57,12 @@ public class BookCategoryAdapter extends BaseAdapter {
     class ViewHolder{
         ImageView ivCategory;
         TextView tvCategory;
+        private View itemView;
 
         public ViewHolder(View view) {
-            ivCategory = view.findViewById(R.id.iv_book_category);
-            tvCategory = view.findViewById(R.id.tv_book_category);
+            itemView = view;
+            ivCategory = itemView.findViewById(R.id.iv_book_category);
+            tvCategory = itemView.findViewById(R.id.tv_book_category);
         }
     }
 }

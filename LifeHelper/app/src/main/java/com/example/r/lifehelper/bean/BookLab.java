@@ -23,7 +23,7 @@ public class BookLab {
     private BookLab(Context context) {
         mContext = context.getApplicationContext();
         mTask = new BookAsyncTask();
-        mTask.execute("https://api.douban.com/v2/book/search?q=python");
+        mTask.execute("https://www.qisuu.la/soft/sort010/");
         try {
             mBooks = mTask.get();
         } catch (InterruptedException e) {
@@ -37,10 +37,10 @@ public class BookLab {
         return mBooks;
     }
 
-    public Book getBook(int id){
+    public Book getBook(String title){
         for (Book book:mBooks
              ) {
-            if (book.getId() == id){
+            if (book.getTitle() == title){
                 return book;
             }
         }

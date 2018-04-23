@@ -5,10 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.example.r.lifehelper.adapter.BookCategoryAdapter;
@@ -17,9 +19,11 @@ import com.example.r.lifehelper.bean.Book;
 import com.example.r.lifehelper.bean.BookCategory;
 import com.example.r.lifehelper.bean.BookCategoryLab;
 import com.example.r.lifehelper.bean.BookLab;
+import com.example.r.lifehelper.utils.BookAsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class BookListFragment extends Fragment {
     private RecyclerView rvBookList;
@@ -42,6 +46,21 @@ public class BookListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_life_book_list,container,false);
         initCategory(view);
+        gvBookCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                BookCategory bookCategory = mBookCategories.get(i);
+                String newUrl = bookCategory.getUrl();
+                try {
+                    mBookList = new BookAsyncTask().execute(newUrl).get();
+                    setupAdapter();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         initList(view);
         return view;
     }
@@ -54,7 +73,7 @@ public class BookListFragment extends Fragment {
 
     private void initList(View view) {
         rvBookList = view.findViewById(R.id.rv_life_book);
-        rvBookList.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        rvBookList.setLayoutManager(new LinearLayoutManager(getActivity()));
         setupAdapter();
     }
 
