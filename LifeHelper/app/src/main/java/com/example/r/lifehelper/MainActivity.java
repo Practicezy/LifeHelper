@@ -11,6 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.r.lifehelper.fragment.IdealFragment;
+import com.example.r.lifehelper.fragment.LifeFragment;
+import com.example.r.lifehelper.fragment.NewsFragment;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private Toolbar mToolbar;
     private TextView mToolbarTitle;

@@ -1,4 +1,4 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.r.lifehelper.R;
 
 public class MovieListFragment extends Fragment {
 

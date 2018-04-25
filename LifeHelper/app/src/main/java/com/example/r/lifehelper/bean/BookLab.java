@@ -3,14 +3,14 @@ package com.example.r.lifehelper.bean;
 import android.content.Context;
 
 
-import com.example.r.lifehelper.utils.BookAsyncTask;
+import com.example.r.lifehelper.data.BookListAsyncTask;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class BookLab {
     private static BookLab sBookLab;
     private List<Book> mBooks;
-    private BookAsyncTask mTask;
+    private BookListAsyncTask mTask;
     private Context mContext;
 
     public static BookLab getBookLab(Context context){
@@ -22,7 +22,7 @@ public class BookLab {
 
     private BookLab(Context context) {
         mContext = context.getApplicationContext();
-        mTask = new BookAsyncTask();
+        mTask = new BookListAsyncTask();
         mTask.execute("https://www.qisuu.la/soft/sort010/");
         try {
             mBooks = mTask.get();
@@ -40,14 +40,14 @@ public class BookLab {
     public Book getBook(String title){
         for (Book book:mBooks
              ) {
-            if (book.getTitle() == title){
+            if (book.getTitle().equals(title)){
                 return book;
             }
         }
         return null;
     }
 
-    public void updateBookLab(List<Book> bookList){
+    public void updateBookList(List<Book> bookList){
         mBooks = bookList;
     }
 

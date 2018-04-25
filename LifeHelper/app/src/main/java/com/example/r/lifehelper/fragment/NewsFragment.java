@@ -1,4 +1,4 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.adapter.NewsAdapter;
 import com.example.r.lifehelper.bean.News;
 import com.example.r.lifehelper.utils.NewsLoader;

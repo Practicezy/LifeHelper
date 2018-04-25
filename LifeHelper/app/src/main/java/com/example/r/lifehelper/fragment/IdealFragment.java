@@ -1,4 +1,4 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,13 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-public class BookDetailFragment extends Fragment {
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+public class IdealFragment extends Fragment {
 
     @Nullable
     @Override

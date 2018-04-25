@@ -1,10 +1,9 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,15 +12,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.adapter.BookCategoryAdapter;
 import com.example.r.lifehelper.adapter.BookListAdapter;
 import com.example.r.lifehelper.bean.Book;
 import com.example.r.lifehelper.bean.BookCategory;
 import com.example.r.lifehelper.bean.BookCategoryLab;
 import com.example.r.lifehelper.bean.BookLab;
-import com.example.r.lifehelper.utils.BookAsyncTask;
+import com.example.r.lifehelper.data.BookListAsyncTask;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -45,14 +44,16 @@ public class BookListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_life_book_list,container,false);
+        /*初始化类别列表*/
         initCategory(view);
+        /*设置类别列表的点击事件*/
         gvBookCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 BookCategory bookCategory = mBookCategories.get(i);
                 String newUrl = bookCategory.getUrl();
                 try {
-                    mBookList = new BookAsyncTask().execute(newUrl).get();
+                    mBookList = new BookListAsyncTask().execute(newUrl).get();
                     setupAdapter();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -61,6 +62,7 @@ public class BookListFragment extends Fragment {
                 }
             }
         });
+        /*初始化详情列表*/
         initList(view);
         return view;
     }
@@ -77,7 +79,7 @@ public class BookListFragment extends Fragment {
         setupAdapter();
     }
 
-
+    /*更新详情列表数据*/
     private void setupAdapter(){
         if (mAdapter == null){
             mAdapter = new BookListAdapter(mBookList, getActivity());

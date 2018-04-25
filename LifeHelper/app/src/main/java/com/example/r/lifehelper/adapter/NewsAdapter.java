@@ -104,6 +104,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         notifyDataSetChanged();
     }
 
+    /*列表数目*/
     @Override
     public int getItemCount() {
         return mNewsList.size();

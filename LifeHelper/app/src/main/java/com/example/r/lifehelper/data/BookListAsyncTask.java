@@ -1,12 +1,8 @@
-package com.example.r.lifehelper.utils;
+package com.example.r.lifehelper.data;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.r.lifehelper.bean.Book;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -15,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookAsyncTask extends AsyncTask<String,Void,List<Book>> {
+public class BookListAsyncTask extends AsyncTask<String,Void,List<Book>> {
     @Override
     protected List<Book> doInBackground(String... strings) {
         String url = strings[0];
@@ -23,6 +19,7 @@ public class BookAsyncTask extends AsyncTask<String,Void,List<Book>> {
         return books;
     }
 
+    /*根据网址的js内容解析得到数据*/
     private static List<Book> parseUrl(String urlSpec){
         List<Book> books = new ArrayList<>();
         try {

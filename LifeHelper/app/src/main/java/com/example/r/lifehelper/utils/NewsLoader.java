@@ -37,7 +37,7 @@ public class NewsLoader {
             List<News> newsList = parseUrl(urlString);
             return newsList;
         }
-
+        /*根据调用的api的内容来获取数据*/
         private List<News> parseUrl(String urlString){
             List<News> newsList = new ArrayList<>();
             try {

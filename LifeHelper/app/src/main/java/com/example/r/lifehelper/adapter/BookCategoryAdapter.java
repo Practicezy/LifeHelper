@@ -23,21 +23,25 @@ public class BookCategoryAdapter extends BaseAdapter {
         mContext = context;
     }
 
+    /*书类别列表数目*/
     @Override
     public int getCount() {
         return mBookCategories.size();
     }
 
+    /*返回对应位置的视图*/
     @Override
     public Object getItem(int i) {
         return mBookCategories.get(i);
     }
 
+    /*返回对应位置*/
     @Override
     public long getItemId(int i) {
         return i;
     }
 
+    /*创建和绑定UI数据*/
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;

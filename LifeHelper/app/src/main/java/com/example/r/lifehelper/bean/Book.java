@@ -1,7 +1,7 @@
 package com.example.r.lifehelper.bean;
 
 public class Book {
-    private String mTitle,mImageUrl, mUrl,mAuthor,mSummary;
+    private String mTitle,mImageUrl, mUrl,mAuthor,mSummary,mDate,mIntro,mDetailUrl;
 
     public String getTitle() {
         return mTitle;
@@ -41,5 +41,29 @@ public class Book {
 
     public void setSummary(String summary) {
         mSummary = summary;
+    }
+
+    public String getDate() {
+        return mDate;
+    }
+
+    public void setDate(String date) {
+        mDate = date;
+    }
+
+    public String getIntro() {
+        return mIntro;
+    }
+
+    public void setIntro(String intro) {
+        mIntro = intro;
+    }
+
+    public String getDetailUrl() {
+        return mDetailUrl;
+    }
+
+    public void setDetailUrl(String detailUrl) {
+        mDetailUrl = detailUrl;
     }
 }
