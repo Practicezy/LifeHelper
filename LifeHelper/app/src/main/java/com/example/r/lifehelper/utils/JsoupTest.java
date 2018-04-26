@@ -13,12 +13,16 @@ public class JsoupTest {
 
     public static void main(String[] args) {
         try {
-            Document doc = Jsoup.connect("https://www.qisuu.la/du/33/33638/9869497.html").timeout(3000).get();
-            Elements txt = doc.select("div.txt_cont");
-            Elements chapter = txt.select("h1");
-            Elements content = txt.select("div[id=content1]");
-            System.out.println(chapter.get(0).ownText());
-            System.out.println(content.get(0).html().replace("<br>","\t").replace("&nbsp"," "));
+            Document doc = Jsoup.connect("https://www.qisuu.la/du/33/33961/").timeout(3000).get();
+            Elements info = doc.select("div[id=info]");
+            Elements des = info.select("div.info_des");
+            Elements title = des.select("h1");
+            System.out.println(title.get(0).ownText());
+//            Elements txt = doc.select("div.txt_cont");
+//            Elements chapter = txt.select("h1");
+//            Elements content = txt.select("div[id=content1]");
+//            System.out.println(chapter.get(0).ownText());
+//            System.out.println(content.get(0).html().replace("<br>","\t").replace("&nbsp"," "));
         } catch (IOException e) {
             e.printStackTrace();
         }

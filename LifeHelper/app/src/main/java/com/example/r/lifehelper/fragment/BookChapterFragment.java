@@ -38,6 +38,7 @@ public class BookChapterFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*获取章节信息*/
         url = getArguments().getString(CHAPTER_ARGS);
         try {
             mBookChapterList = new BookChapterAsyncTask().execute(url).get();
@@ -57,11 +58,13 @@ public class BookChapterFragment extends Fragment {
         return view;
     }
 
+    /*上方显示合计章节数*/
     private void initChapterSize(View view) {
         tvChapterSize = view.findViewById(R.id.tv_chapter_size);
         tvChapterSize.setText("合计" +mBookChapterList.size() +"章");
     }
 
+    /*章节数详情*/
     private void initList(View view) {
         rvBookChapter = view.findViewById(R.id.rv_book_chapter);
         rvBookChapter.setLayoutManager(new LinearLayoutManager(getActivity()));

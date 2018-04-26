@@ -1,6 +1,5 @@
 package com.example.r.lifehelper.fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,9 +23,8 @@ import java.util.concurrent.ExecutionException;
 public class BookDetailFragment extends Fragment {
     private TextView tvTitle,tvAuthor,tvDate,tvIntro;
     private ImageView ivImg;
-    private Button btnRead;
+    private Button btnRead,btnHistory;
     private Book mBook;
-    private ProgressDialog dialog;
     private static final String BOOK_ARGS = "com.example.r.lifehelper.fragment.book_args";
 
     public static Fragment newInstance(String title){
@@ -40,11 +38,10 @@ public class BookDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dialog = ProgressDialog.show(getActivity(), "提示：","loading...");
-        dialog.show();
         initData();
     }
 
+    /*通过标题得到对应的书籍详情信息*/
     private void initData() {
         String title = getArguments().getString(BOOK_ARGS);
         Book book = BookLab.getBookLab(getActivity()).getBook(title);
@@ -57,19 +54,33 @@ public class BookDetailFragment extends Fragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        dialog.dismiss();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_book_detail,container,false);
+        /*初始化界面*/
         initView(view);
+        /*点击跳转至章节列表页*/
         btnRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 Fragment fragment = BookChapterFragment.newInstance(mBook.getDetailUrl());
+                fm.beginTransaction()
+                        .replace(R.id.book_fragment_container,fragment)
+                        .addToBackStack(null)
+                        .show(fragment)
+                        .commit();
+            }
+        });
+        /*点击跳转至历史阅读页*/
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                Fragment fragment = BookHistoryFragment.newInstance(mBook.getTitle());
                 fm.beginTransaction()
                         .replace(R.id.book_fragment_container,fragment)
                         .addToBackStack(null)
@@ -87,6 +98,7 @@ public class BookDetailFragment extends Fragment {
         tvIntro = view.findViewById(R.id.book_detail_intro);
         ivImg = view.findViewById(R.id.book_detail_img);
         btnRead = view.findViewById(R.id.btn_read_book);
+        btnHistory = view.findViewById(R.id.btn_book_history);
 
         tvTitle.setText(mBook.getTitle());
         tvAuthor.setText(mBook.getAuthor());

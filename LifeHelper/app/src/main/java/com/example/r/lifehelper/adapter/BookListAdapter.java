@@ -1,8 +1,11 @@
 package com.example.r.lifehelper.adapter;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +58,15 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
         mBookList = books;
         BookLab.getBookLab(mContext).updateBookList(mBookList);
         notifyDataSetChanged();
+    }
+
+    /*添加列表内容和新视图*/
+    public void insertItems(int position,List<Book> books){
+        for (int i = 0; i < books.size(); i++) {
+            mBookList.add(position + i,books.get(i));
+            notifyItemInserted(position + i);
+            notifyItemChanged(position,mBookList.size() - (position + i));
+        }
     }
 
     class BookListHolder extends RecyclerView.ViewHolder{

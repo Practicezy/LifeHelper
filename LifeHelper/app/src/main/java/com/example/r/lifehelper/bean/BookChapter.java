@@ -1,14 +1,22 @@
 package com.example.r.lifehelper.bean;
 
 public class BookChapter {
-    private String mTitle,mChapterUrl,mContent;
+    private String mBookTitle,mChapterTitle,mChapterUrl,mContent;
 
-    public String getTitle() {
-        return mTitle;
+    public String getBookTitle() {
+        return mBookTitle;
     }
 
-    public void setTitle(String title) {
-        mTitle = title;
+    public void setBookTitle(String bookTitle) {
+        mBookTitle = bookTitle;
+    }
+
+    public String getChapterTitle() {
+        return mChapterTitle;
+    }
+
+    public void setChapterTitle(String chapterTitle) {
+        mChapterTitle = chapterTitle;
     }
 
     public String getChapterUrl() {

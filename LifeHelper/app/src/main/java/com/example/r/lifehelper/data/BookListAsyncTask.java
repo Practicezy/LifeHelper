@@ -32,7 +32,7 @@ public class BookListAsyncTask extends AsyncTask<String,Void,List<Book>> {
             Elements imgs = lis.select("img");
             for (int i = 0; i < lists.size(); i++) {
                 Book book = new Book();
-                book.setTitle(lists.get(i).text());
+                book.setTitle(lists.get(i).text().replace("全集",""));
                 book.setImageUrl(imgs.get(i).absUrl("src"));
                 book.setUrl(lists.get(i).absUrl("href"));
                 book.setAuthor(authors.get(i).textNodes().get(0).text());

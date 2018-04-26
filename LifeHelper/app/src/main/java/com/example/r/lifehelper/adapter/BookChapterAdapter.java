@@ -39,7 +39,7 @@ public class BookChapterAdapter extends RecyclerView.Adapter<BookChapterAdapter.
     @Override
     public void onBindViewHolder(@NonNull ChapterHolder holder, final int position) {
         final BookChapter bookChapter = mBookChapterList.get(position);
-        holder.mTextView.setText(bookChapter.getTitle());
+        holder.mTextView.setText(bookChapter.getChapterTitle());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

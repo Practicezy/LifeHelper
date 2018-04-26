@@ -24,12 +24,16 @@ public class BookChapterAsyncTask extends AsyncTask<String,Void,List<BookChapter
         List<BookChapter> bookChapterList = new ArrayList<>();
         try {
             Document doc = Jsoup.connect(urlSpec).get();
+            Elements info = doc.select("div[id=info]");
+            Elements des = info.select("div.info_des");
+            Elements title = des.select("h1");
             Elements list = doc.select("div.pc_list:contains(正文)");
             Elements li = list.select("li");
             Elements a = li.select("a");
             for (int i = 0; i < a.size(); i++) {
                 BookChapter bookChapter = new BookChapter();
-                bookChapter.setTitle(a.get(i).ownText());
+                bookChapter.setBookTitle(title.get(0).ownText());
+                bookChapter.setChapterTitle(a.get(i).ownText());
                 bookChapter.setChapterUrl(a.get(i).absUrl("href"));
                 bookChapterList.add(bookChapter);
             }
