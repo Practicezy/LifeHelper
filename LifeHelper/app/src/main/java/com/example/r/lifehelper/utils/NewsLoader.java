@@ -17,7 +17,7 @@ public class NewsLoader {
     public List<News> loadNewsByAsyncTask(String urlSpec){
         List<News> newsList = new ArrayList<>();
         NewsAasynctask newsAasynctask = new NewsAasynctask();
-        newsAasynctask.execute("http://api.avatardata.cn/TouTiao/Query?key=3883d6c886b84f5fa8a10768282eccff&type=" + urlSpec);
+        newsAasynctask.execute("http://api.avatardata.cn/TouTiao/Query?key=a00709490da64cf4ac51264d45f21c45&type=" + urlSpec);
         try {
             newsList = newsAasynctask.get();
         } catch (InterruptedException e) {

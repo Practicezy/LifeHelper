@@ -6,6 +6,8 @@
     android:layout_margin="5dp"
     app:cardCornerRadius="6dp"
     app:cardElevation="3dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
     app:cardBackgroundColor="@color/cv_bg">
 
     <LinearLayout

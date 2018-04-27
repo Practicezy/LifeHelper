@@ -97,6 +97,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="5dp"
                     android:background="@color/colorLightPink"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/detail_read"
                     android:textColor="#333366" />
                 <Button
@@ -105,6 +106,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="10dp"
                     android:background="@color/colorWheat"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/detail_douban"
                     android:textColor="#333366"/>
             </LinearLayout>

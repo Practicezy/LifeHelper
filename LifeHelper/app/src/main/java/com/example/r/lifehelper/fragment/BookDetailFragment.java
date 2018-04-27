@@ -18,6 +18,7 @@ import com.example.r.lifehelper.bean.BookLab;
 import com.example.r.lifehelper.data.BookDetailAsyncTask;
 import com.example.r.lifehelper.utils.ImageLoader;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
 
 public class BookDetailFragment extends Fragment {
@@ -75,19 +76,28 @@ public class BookDetailFragment extends Fragment {
                         .commit();
             }
         });
-        /*点击跳转至历史阅读页*/
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                Fragment fragment = BookHistoryFragment.newInstance(mBook.getTitle());
-                fm.beginTransaction()
-                        .replace(R.id.book_fragment_container,fragment)
-                        .addToBackStack(null)
-                        .show(fragment)
-                        .commit();
-            }
-        });
+        /*点击跳转至历史阅读页
+        * 如无历史记录则不能跳转*/
+        String title = mBook.getTitle().replace("《","").replace("》","");
+        File file = new File("/data/data/com.example.r.lifehelper/shared_prefs/"+title+".xml");
+        if (!file.exists()){
+            btnHistory.setClickable(false);
+            btnHistory.setText("暂无记录");
+            btnHistory.setTextColor(getResources().getColor(R.color.colorLightBlack));
+        }else {
+            btnHistory.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    Fragment fragment = BookHistoryFragment.newInstance(mBook.getTitle());
+                    fm.beginTransaction()
+                            .replace(R.id.book_fragment_container,fragment)
+                            .addToBackStack(null)
+                            .show(fragment)
+                            .commit();
+                }
+            });
+        }
         return view;
     }
 

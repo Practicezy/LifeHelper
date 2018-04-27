@@ -16,6 +16,7 @@
         android:background="@color/colorLightWheat"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

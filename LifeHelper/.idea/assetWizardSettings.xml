@@ -29,6 +29,17 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="86" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                     </map>
                                   </option>
                                   <option name="values">
@@ -37,7 +48,7 @@
                                       <entry key="backgroundColor" value="ffffff" />
                                       <entry key="backgroundImage" value="C:\Users\赵远\Pictures\5.jpg" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\赵远\Pictures\5.jpg" />
+                                      <entry key="foregroundImage" value="C:\Users\赵远\Pictures\me (2).jpg" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
                                       <entry key="outputName" value="ic_launcher_new" />
                                     </map>
