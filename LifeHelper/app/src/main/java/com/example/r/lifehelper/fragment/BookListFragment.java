@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.adapter.BookCategoryAdapter;
@@ -31,27 +32,25 @@ public class BookListFragment extends Fragment {
     private BookListAdapter mAdapter;
     private List<BookCategory> mBookCategories;
     private GridView gvBookCategory;
+    private BookCategoryAdapter categoryAdapter;
     private BookCategory mBookCategory;
-
-    /*初始化数据*/
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mBookList = BookLab.getBookLab(getActivity()).getBooks();
-        mBookCategories = BookCategoryLab.getBookCategoryLab().getBookCategories();
-    }
 
     /*初始化UI元素*/
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_life_book_list,container,false);
+        View view = inflater.inflate(R.layout.fragment_life_book_list, container, false);
+        /*初始化数据*/
+        mBookList = BookLab.getBookLab(getActivity()).getBooks();
+        mBookCategories = BookCategoryLab.getBookCategoryLab().getBookCategories();
         /*初始化类别列表*/
         initCategory(view);
         /*设置类别列表的点击事件*/
         gvBookCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                categoryAdapter.getSelectPositon(i);
+                categoryAdapter.notifyDataSetChanged();
                 mBookCategory = mBookCategories.get(i);
                 String newUrl = mBookCategory.getUrl();
                 try {
@@ -77,13 +76,13 @@ public class BookListFragment extends Fragment {
                 int visibleItemCount = rvBookList.getChildCount();
 
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleCount == totalItemCount - 1
-                        && visibleItemCount > 0){
+                        && visibleItemCount > 0) {
                     String urlRecent = mBookCategory.getUrl();
                     int i = 2;
-                    String urlPage = urlRecent + "index_"+ (i++) +".html";
+                    String urlPage = urlRecent + "index_" + (i++) + ".html";
                     try {
                         mBookList = new BookListAsyncTask().execute(urlPage).get();
-                        mAdapter.insertItems(lastVisibleCount+1,mBookList);
+                        mAdapter.insertItems(lastVisibleCount + 1, mBookList);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
@@ -95,11 +94,20 @@ public class BookListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden){
+            System.gc();
+        }
+    }
+
     private void initCategory(View view) {
         gvBookCategory = view.findViewById(R.id.gv_life_book);
-        BookCategoryAdapter adapter = new BookCategoryAdapter(mBookCategories, getActivity());
-        gvBookCategory.setAdapter(adapter);
+        categoryAdapter = new BookCategoryAdapter(mBookCategories, getActivity());
+        gvBookCategory.setAdapter(categoryAdapter);
         mBookCategory = mBookCategories.get(9);
+        categoryAdapter.getSelectPositon(9);
     }
 
     private void initList(View view) {
@@ -110,11 +118,11 @@ public class BookListFragment extends Fragment {
     }
 
     /*更新详情列表数据*/
-    private void setupAdapter(){
-        if (mAdapter == null){
+    private void setupAdapter() {
+        if (mAdapter == null) {
             mAdapter = new BookListAdapter(mBookList, getActivity());
             rvBookList.setAdapter(mAdapter);
-        }else{
+        } else {
             mAdapter.updateAdapter(mBookList);
         }
     }

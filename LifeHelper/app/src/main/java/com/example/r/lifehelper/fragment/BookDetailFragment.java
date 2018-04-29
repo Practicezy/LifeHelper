@@ -19,19 +19,20 @@ import com.example.r.lifehelper.data.BookDetailAsyncTask;
 import com.example.r.lifehelper.utils.ImageLoader;
 
 import java.io.File;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class BookDetailFragment extends Fragment {
-    private TextView tvTitle,tvAuthor,tvDate,tvIntro;
+    private TextView tvTitle, tvAuthor, tvDate, tvIntro;
     private ImageView ivImg;
-    private Button btnRead,btnHistory;
+    private Button btnRead, btnHistory;
     private Book mBook;
     private static final String BOOK_ARGS = "com.example.r.lifehelper.fragment.book_args";
 
-    public static Fragment newInstance(String title){
+    public static Fragment newInstance(UUID uuid) {
         BookDetailFragment fragment = new BookDetailFragment();
         Bundle args = new Bundle();
-        args.putString(BOOK_ARGS, title);
+        args.putSerializable(BOOK_ARGS, uuid);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,8 +45,8 @@ public class BookDetailFragment extends Fragment {
 
     /*通过标题得到对应的书籍详情信息*/
     private void initData() {
-        String title = getArguments().getString(BOOK_ARGS);
-        Book book = BookLab.getBookLab(getActivity()).getBook(title);
+        UUID uuid = (UUID) getArguments().getSerializable(BOOK_ARGS);
+        Book book = BookLab.getBookLab(getActivity()).getBook(uuid);
         try {
             mBook = new BookDetailAsyncTask().execute(book.getUrl()).get();
             mBook.setTitle(book.getTitle());
@@ -60,7 +61,7 @@ public class BookDetailFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_book_detail,container,false);
+        View view = inflater.inflate(R.layout.fragment_book_detail, container, false);
         /*初始化界面*/
         initView(view);
         /*点击跳转至章节列表页*/
@@ -70,28 +71,28 @@ public class BookDetailFragment extends Fragment {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 Fragment fragment = BookChapterFragment.newInstance(mBook.getDetailUrl());
                 fm.beginTransaction()
-                        .replace(R.id.book_fragment_container,fragment)
+                        .replace(R.id.book_fragment_container, fragment)
                         .addToBackStack(null)
                         .show(fragment)
                         .commit();
             }
         });
         /*点击跳转至历史阅读页
-        * 如无历史记录则不能跳转*/
-        String title = mBook.getTitle().replace("《","").replace("》","");
-        File file = new File("/data/data/com.example.r.lifehelper/shared_prefs/"+title+".xml");
-        if (!file.exists()){
+         * 如无历史记录则不能跳转*/
+        String title = mBook.getTitle().replace("《", "").replace("》", "");
+        File file = new File("/data/data/com.example.r.lifehelper/shared_prefs/" + title + ".xml");
+        if (!file.exists()) {
             btnHistory.setClickable(false);
             btnHistory.setText("暂无记录");
             btnHistory.setTextColor(getResources().getColor(R.color.colorLightBlack));
-        }else {
+        } else {
             btnHistory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     Fragment fragment = BookHistoryFragment.newInstance(mBook.getTitle());
                     fm.beginTransaction()
-                            .replace(R.id.book_fragment_container,fragment)
+                            .replace(R.id.book_fragment_container, fragment)
                             .addToBackStack(null)
                             .show(fragment)
                             .commit();
@@ -115,6 +116,6 @@ public class BookDetailFragment extends Fragment {
         tvDate.setText(mBook.getDate());
         tvIntro.setText(mBook.getIntro());
         ivImg.setTag(mBook.getImageUrl());
-        new ImageLoader(getActivity()).loadBitmapByThread(ivImg,mBook.getImageUrl(),500,500);
+        new ImageLoader(getActivity()).loadRoundBitmapByThread(ivImg, mBook.getImageUrl(), 500, 500);
     }
 }

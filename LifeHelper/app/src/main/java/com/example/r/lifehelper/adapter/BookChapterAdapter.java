@@ -22,7 +22,7 @@ public class BookChapterAdapter extends RecyclerView.Adapter<BookChapterAdapter.
     private Context mContext;
     private String mUrl;
 
-    public BookChapterAdapter(List<BookChapter> bookChapterList, Context context,String url) {
+    public BookChapterAdapter(List<BookChapter> bookChapterList, Context context, String url) {
         mBookChapterList = bookChapterList;
         mContext = context;
         mUrl = url;
@@ -31,7 +31,7 @@ public class BookChapterAdapter extends RecyclerView.Adapter<BookChapterAdapter.
     @NonNull
     @Override
     public ChapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(android.R.layout.simple_list_item_1,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(android.R.layout.simple_list_item_1, parent, false);
         ChapterHolder holder = new ChapterHolder(view);
         return holder;
     }
@@ -43,10 +43,10 @@ public class BookChapterAdapter extends RecyclerView.Adapter<BookChapterAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = ((AppCompatActivity)mContext).getSupportFragmentManager();
-                Fragment fragment = BookContentFragment.newInstance(mUrl,position);
+                FragmentManager fm = ((AppCompatActivity) mContext).getSupportFragmentManager();
+                Fragment fragment = BookContentFragment.newInstance(mUrl, position);
                 fm.beginTransaction()
-                        .replace(R.id.book_fragment_container,fragment)
+                        .replace(R.id.book_fragment_container, fragment)
                         .addToBackStack(null)
                         .show(fragment)
                         .commit();
@@ -59,8 +59,9 @@ public class BookChapterAdapter extends RecyclerView.Adapter<BookChapterAdapter.
         return mBookChapterList.size();
     }
 
-    class ChapterHolder extends RecyclerView.ViewHolder{
+    class ChapterHolder extends RecyclerView.ViewHolder {
         private TextView mTextView;
+
         public ChapterHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView;

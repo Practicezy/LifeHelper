@@ -21,9 +21,9 @@ public class NewsActivity extends AppCompatActivity {
     private static final String EXTRA_NEWS = "news_url";
 
     /*传递网址来启动该Activity */
-    public static Intent newIntent(Context context, String urlSpec){
+    public static Intent newIntent(Context context, String urlSpec) {
         Intent intent = new Intent(context, NewsActivity.class);
-        intent.putExtra(EXTRA_NEWS,urlSpec);
+        intent.putExtra(EXTRA_NEWS, urlSpec);
         return intent;
     }
 
@@ -43,7 +43,7 @@ public class NewsActivity extends AppCompatActivity {
         String url = getIntent().getStringExtra(EXTRA_NEWS);
         wvNews.loadUrl(url);
         /*防止唤醒浏览器*/
-        wvNews.setWebViewClient(new WebViewClient(){
+        wvNews.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
@@ -51,10 +51,10 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
         /*在页面加载完毕前显示加载中对话框*/
-        wvNews.setWebViewClient(new WebViewClient(){
+        wvNews.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                if (!isFinishing()){
+                if (!isFinishing()) {
                     mProgressDialog.show();
                 }
                 super.onPageStarted(view, url, favicon);
@@ -86,18 +86,18 @@ public class NewsActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (mProgressDialog != null){
+        if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
     }
 
     @Override
     protected void onDestroy() {
-        if (wvNews != null){
-            wvNews.loadDataWithBaseURL(null,"","text/html", "utf-8",null);
+        if (wvNews != null) {
+            wvNews.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
             wvNews.clearHistory();
 
-            ((ViewGroup)wvNews.getParent()).removeView(wvNews);
+            ((ViewGroup) wvNews.getParent()).removeView(wvNews);
             wvNews.destroy();
             wvNews = null;
         }

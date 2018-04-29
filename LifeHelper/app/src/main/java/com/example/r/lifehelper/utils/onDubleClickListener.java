@@ -15,7 +15,7 @@ public class onDubleClickListener implements View.OnTouchListener {
     /*两次点击间隔时间*/
     private final int interval = 1500;
 
-    public interface DoubleClickCallback{
+    public interface DoubleClickCallback {
         void onDoubleClick();
     }
 
@@ -26,20 +26,20 @@ public class onDubleClickListener implements View.OnTouchListener {
     /*具体的双击事件*/
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (MotionEvent.ACTION_DOWN == motionEvent.getAction()){
+        if (MotionEvent.ACTION_DOWN == motionEvent.getAction()) {
             count++;
-            if ( 1 == count){
+            if (1 == count) {
                 firClick = (int) System.currentTimeMillis();
-            }else if ( 2 == count){
+            } else if (2 == count) {
                 secClick = (int) System.currentTimeMillis();
-                if (secClick - firClick < interval){
-                    if (mCallback != null){
+                if (secClick - firClick < interval) {
+                    if (mCallback != null) {
                         mCallback.onDoubleClick();
                     }
 
                     count = 0;
                     firClick = 0;
-                }else {
+                } else {
                     firClick = secClick;
                     count = 1;
                 }

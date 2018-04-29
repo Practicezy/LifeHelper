@@ -33,8 +33,8 @@ public class BookContentFragment extends Fragment {
     private static final String CHAPTERS_ARGS = "com.example.r.lifehelper.fragment.chapters_args";
     private static final String POSITION_ARGS = "com.example.r.lifehelper.fragment.content_chapter_args";
     private static final String TAG = "BookContentFragment";
-    
-    public static Fragment newInstance(String chaptersUrl,int position){
+
+    public static Fragment newInstance(String chaptersUrl, int position) {
         BookContentFragment fragment = new BookContentFragment();
         Bundle args = new Bundle();
         args.putString(CHAPTERS_ARGS, chaptersUrl);
@@ -61,13 +61,13 @@ public class BookContentFragment extends Fragment {
         /*存储当前内容信息*/
         sPref = getActivity().getSharedPreferences(mBookChapter.getBookTitle(), Context.MODE_PRIVATE);
         editor = sPref.edit();
-        editor.putString("urlSpec",chapterUrl);
+        editor.putString("urlSpec", chapterUrl);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_book_content,container,false);
+        View view = inflater.inflate(R.layout.fragment_book_content, container, false);
         initTitle(view);
         initPager(view);
         return view;
@@ -87,7 +87,7 @@ public class BookContentFragment extends Fragment {
             @Override
             public Fragment getItem(int position) {
                 BookChapter bookChapter = mBookChapterList.get(position);
-                editor.putInt("position",position);
+                editor.putInt("position", position);
                 return BookPagerFragment.newInstance(bookChapter.getChapterUrl());
             }
 

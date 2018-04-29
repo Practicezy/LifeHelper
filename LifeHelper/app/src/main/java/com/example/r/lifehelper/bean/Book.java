@@ -1,7 +1,18 @@
 package com.example.r.lifehelper.bean;
 
+import java.util.UUID;
+
 public class Book {
-    private String mTitle,mImageUrl, mUrl,mAuthor,mSummary,mDate,mIntro,mDetailUrl;
+    private UUID mId;
+    private String mTitle, mImageUrl, mUrl, mAuthor, mSummary, mDate, mIntro, mDetailUrl;
+
+    public Book() {
+        mId = UUID.randomUUID();
+    }
+
+    public UUID getId() {
+        return mId;
+    }
 
     public String getTitle() {
         return mTitle;

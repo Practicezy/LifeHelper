@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookChapterAsyncTask extends AsyncTask<String,Void,List<BookChapter>> {
+public class BookChapterAsyncTask extends AsyncTask<String, Void, List<BookChapter>> {
 
     @Override
     protected List<BookChapter> doInBackground(String... strings) {
@@ -20,7 +20,7 @@ public class BookChapterAsyncTask extends AsyncTask<String,Void,List<BookChapter
         return parseUrl(url);
     }
 
-    private static List<BookChapter> parseUrl(String urlSpec){
+    private static List<BookChapter> parseUrl(String urlSpec) {
         List<BookChapter> bookChapterList = new ArrayList<>();
         try {
             Document doc = Jsoup.connect(urlSpec).get();

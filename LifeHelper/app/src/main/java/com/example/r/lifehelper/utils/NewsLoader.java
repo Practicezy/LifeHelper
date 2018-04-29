@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 
 public class NewsLoader {
     /*通过asyncTask加载新闻页*/
-    public List<News> loadNewsByAsyncTask(String urlSpec){
+    public List<News> loadNewsByAsyncTask(String urlSpec) {
         List<News> newsList = new ArrayList<>();
         NewsAasynctask newsAasynctask = new NewsAasynctask();
         newsAasynctask.execute("http://api.avatardata.cn/TouTiao/Query?key=a00709490da64cf4ac51264d45f21c45&type=" + urlSpec);
@@ -28,7 +28,7 @@ public class NewsLoader {
         return newsList;
     }
 
-    private class NewsAasynctask extends AsyncTask<String,Void,List<News>> {
+    private class NewsAasynctask extends AsyncTask<String, Void, List<News>> {
 
         @Override
         protected List<News> doInBackground(String... strings) {
@@ -37,8 +37,9 @@ public class NewsLoader {
             List<News> newsList = parseUrl(urlString);
             return newsList;
         }
+
         /*根据调用的api的内容来获取数据*/
-        private List<News> parseUrl(String urlString){
+        private List<News> parseUrl(String urlString) {
             List<News> newsList = new ArrayList<>();
             try {
                 JSONObject jsonUrl = new JSONObject(urlString);

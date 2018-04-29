@@ -4,16 +4,16 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
     android:minHeight="?android:attr/actionBarSize"
-    app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:elevation="8dp"
-    android:fitsSystemWindows="true">
+    app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_gravity="center"
+        android:gravity="center"
         android:textSize="20sp" />
 </android.support.v7.widget.Toolbar>

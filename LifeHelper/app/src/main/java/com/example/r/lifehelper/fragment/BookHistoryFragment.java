@@ -31,7 +31,7 @@ public class BookHistoryFragment extends Fragment {
     private int position;
     private static final String HISTORY_ARGS = "com.example.r.lifehelper.fragment.book.history";
 
-    public static Fragment newInstance(String title){
+    public static Fragment newInstance(String title) {
         BookHistoryFragment fragment = new BookHistoryFragment();
         Bundle args = new Bundle();
         args.putString(HISTORY_ARGS, title);
@@ -42,10 +42,10 @@ public class BookHistoryFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String title = getArguments().getString(HISTORY_ARGS).replace("《","").replace("》","");
+        String title = getArguments().getString(HISTORY_ARGS).replace("《", "").replace("》", "");
         sPref = getActivity().getSharedPreferences(title, Context.MODE_PRIVATE);
-        url = sPref.getString("urlSpec","");
-        position = sPref.getInt("position",0);
+        url = sPref.getString("urlSpec", "");
+        position = sPref.getInt("position", 0);
         try {
             mBookChapterList = new BookChapterAsyncTask().execute(url).get();
         } catch (InterruptedException e) {
@@ -60,7 +60,7 @@ public class BookHistoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_book_history,container,false);
+        View view = inflater.inflate(R.layout.fragment_book_history, container, false);
         tvBookHistory = view.findViewById(R.id.tv_book_history);
         tvBookHistory.setText(mBookChapter.getBookTitle());
         btnBookHistory = view.findViewById(R.id.btn_book_history_info);
@@ -69,9 +69,9 @@ public class BookHistoryFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                Fragment fragment = BookContentFragment.newInstance(url, position -1);
+                Fragment fragment = BookContentFragment.newInstance(url, position - 1);
                 fm.beginTransaction()
-                        .replace(R.id.book_fragment_container,fragment)
+                        .replace(R.id.book_fragment_container, fragment)
                         .addToBackStack(null)
                         .show(fragment)
                         .commit();

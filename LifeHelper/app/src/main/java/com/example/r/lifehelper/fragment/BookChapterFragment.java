@@ -27,7 +27,7 @@ public class BookChapterFragment extends Fragment {
     private String url;
     private static final String CHAPTER_ARGS = "com.example.r.lifehelper.fragment.chapter_args";
 
-    public static Fragment newInstance(String urlSpec){
+    public static Fragment newInstance(String urlSpec) {
         BookChapterFragment fragment = new BookChapterFragment();
         Bundle args = new Bundle();
         args.putString(CHAPTER_ARGS, urlSpec);
@@ -52,7 +52,7 @@ public class BookChapterFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_book_chapter,container,false);
+        View view = inflater.inflate(R.layout.fragment_book_chapter, container, false);
         initChapterSize(view);
         initList(view);
         return view;
@@ -61,7 +61,7 @@ public class BookChapterFragment extends Fragment {
     /*上方显示合计章节数*/
     private void initChapterSize(View view) {
         tvChapterSize = view.findViewById(R.id.tv_chapter_size);
-        tvChapterSize.setText("合计" +mBookChapterList.size() +"章");
+        tvChapterSize.setText("合计" + mBookChapterList.size() + "章");
     }
 
     /*章节数详情*/
@@ -69,7 +69,7 @@ public class BookChapterFragment extends Fragment {
         rvBookChapter = view.findViewById(R.id.rv_book_chapter);
         rvBookChapter.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvBookChapter.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        BookChapterAdapter adapter = new BookChapterAdapter(mBookChapterList, getActivity(),url);
+        BookChapterAdapter adapter = new BookChapterAdapter(mBookChapterList, getActivity(), url);
         rvBookChapter.setAdapter(adapter);
     }
 }

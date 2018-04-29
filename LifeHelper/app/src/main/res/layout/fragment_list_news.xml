@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="scrollable"
         app:tabIndicatorHeight="0dp"
+        app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/colorAccent"></android.support.design.widget.TabLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fragment_news"
         android:layout_width="match_parent"

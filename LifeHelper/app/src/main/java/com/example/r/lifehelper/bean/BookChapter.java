@@ -1,7 +1,7 @@
 package com.example.r.lifehelper.bean;
 
 public class BookChapter {
-    private String mBookTitle,mChapterTitle,mChapterUrl,mContent;
+    private String mBookTitle, mChapterTitle, mChapterUrl, mContent;
 
     public String getBookTitle() {
         return mBookTitle;

@@ -15,7 +15,7 @@ public class HttpUtils {
 
     /*根据给定的url获得比特流*/
     @Nullable
-    public static byte[] getByteArrayFromUrl(String urlSpec){
+    public static byte[] getByteArrayFromUrl(String urlSpec) {
         HttpURLConnection connection = null;
         try {
             URL url = new URL(urlSpec);
@@ -25,10 +25,10 @@ public class HttpUtils {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
             int len = 0;
-            byte[] buffer = new byte[8*1024];
+            byte[] buffer = new byte[8 * 1024];
 
-            while((len = is.read(buffer,0,buffer.length)) != -1){
-                bos.write(buffer,0,len);
+            while ((len = is.read(buffer, 0, buffer.length)) != -1) {
+                bos.write(buffer, 0, len);
             }
             is.close();
             bos.close();
@@ -45,7 +45,7 @@ public class HttpUtils {
 
     /*根据url解析出字符串*/
     @NonNull
-    public static String getUrlString(String urlSpec){
+    public static String getUrlString(String urlSpec) {
         return new String(getByteArrayFromUrl(urlSpec));
     }
 }

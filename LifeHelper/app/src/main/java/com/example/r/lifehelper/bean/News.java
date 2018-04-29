@@ -1,7 +1,7 @@
 package com.example.r.lifehelper.bean;
 
 public class News {
-    private String mTitle,mSrc,mContent,mImageUrl,mDate;
+    private String mTitle, mSrc, mContent, mImageUrl, mDate;
 
     public String getTitle() {
         return mTitle;

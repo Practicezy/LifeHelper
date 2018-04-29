@@ -2,8 +2,8 @@
 <com.youth.banner.Banner xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/news_item_banner"
-    app:image_scale_type="center_crop"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="250dp"
+    app:image_scale_type="center_crop">
 
 </com.youth.banner.Banner>

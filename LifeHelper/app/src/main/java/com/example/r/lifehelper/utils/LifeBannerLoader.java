@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 public class LifeBannerLoader {
 
     /*加载LifeFragent中的banner*/
-    public static List<String> loadBannerByAsyncTask(){
+    public static List<String> loadBannerByAsyncTask() {
         LifeBannerAsyncTask asyncTask = new LifeBannerAsyncTask();
         asyncTask.execute("https://pixabay.com/api/?key=8250871-a5cbd2dc769e63d6b5fe7138a&category=life&image_type=all&pretty=true");
         try {
@@ -26,7 +26,7 @@ public class LifeBannerLoader {
         return null;
     }
 
-    private static class LifeBannerAsyncTask extends AsyncTask<String,Void,List<String>>{
+    private static class LifeBannerAsyncTask extends AsyncTask<String, Void, List<String>> {
 
         @Override
         protected List<String> doInBackground(String... strings) {
@@ -35,7 +35,7 @@ public class LifeBannerLoader {
             return parseUrl(url);
         }
 
-        private List<String> parseUrl(String urlSpec){
+        private List<String> parseUrl(String urlSpec) {
             List<String> imgList = new ArrayList<>();
 
             try {

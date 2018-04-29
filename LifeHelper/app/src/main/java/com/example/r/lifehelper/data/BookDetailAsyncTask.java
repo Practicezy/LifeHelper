@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-public class BookDetailAsyncTask extends AsyncTask<String,Void,Book> {
+public class BookDetailAsyncTask extends AsyncTask<String, Void, Book> {
 
     @Override
     protected Book doInBackground(String... strings) {
@@ -18,7 +18,7 @@ public class BookDetailAsyncTask extends AsyncTask<String,Void,Book> {
         return parseUrl(url);
     }
 
-    private static Book parseUrl(String urlSpec){
+    private static Book parseUrl(String urlSpec) {
         Book book = new Book();
         Document doc = null;
         try {
@@ -36,8 +36,8 @@ public class BookDetailAsyncTask extends AsyncTask<String,Void,Book> {
         Elements button = links.select("div.showDown");
         Elements a = button.select("a.downButton");
 
-        book.setAuthor(author.get(0).ownText().replace("书籍作者：",""));
-        book.setDate(date.get(0).ownText().replace("更新日期：",""));
+        book.setAuthor(author.get(0).ownText().replace("书籍作者：", ""));
+        book.setDate(date.get(0).ownText().replace("更新日期：", ""));
         book.setImageUrl(imgs.get(0).absUrl("src"));
         book.setIntro(p.get(0).text());
         book.setDetailUrl(a.get(0).absUrl("href"));

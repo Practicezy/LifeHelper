@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-public class BookContentAsyncTask extends AsyncTask<String,Void,BookChapter> {
+public class BookContentAsyncTask extends AsyncTask<String, Void, BookChapter> {
 
     @Override
     protected BookChapter doInBackground(String... strings) {
@@ -18,7 +18,7 @@ public class BookContentAsyncTask extends AsyncTask<String,Void,BookChapter> {
         return parseUrl(url);
     }
 
-    private static BookChapter parseUrl(String urlSpec){
+    private static BookChapter parseUrl(String urlSpec) {
         BookChapter bookChapter = new BookChapter();
         try {
             Document doc = Jsoup.connect(urlSpec).get();
@@ -26,7 +26,7 @@ public class BookContentAsyncTask extends AsyncTask<String,Void,BookChapter> {
             Elements chapter = txt.select("h1");
             Elements content = txt.select("div[id=content1]");
             bookChapter.setChapterTitle(chapter.get(0).ownText());
-            bookChapter.setContent(content.get(0).html().replace("<br>","\t").replace("&nbsp"," "));
+            bookChapter.setContent(content.get(0).html().replace("<br>", "\t").replace("&nbsp", " "));
         } catch (IOException e) {
             e.printStackTrace();
         }

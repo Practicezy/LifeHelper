@@ -17,6 +17,7 @@ import java.util.List;
 public class BookCategoryAdapter extends BaseAdapter {
     private List<BookCategory> mBookCategories;
     private Context mContext;
+    private int selectPosition;
 
     public BookCategoryAdapter(List<BookCategory> bookCategories, Context context) {
         mBookCategories = bookCategories;
@@ -45,20 +46,29 @@ public class BookCategoryAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;
-        if (convertView == null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_grid_category_book,viewGroup,false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_grid_category_book, viewGroup, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         BookCategory bookCategory = mBookCategories.get(i);
         viewHolder.tvCategory.setText(bookCategory.getCategory());
+        if (i == selectPosition) {
+            viewHolder.tvCategory.setTextColor(mContext.getResources().getColor(R.color.colorLightAccent));
+        } else {
+            viewHolder.tvCategory.setTextColor(mContext.getResources().getColor(R.color.text));
+        }
         viewHolder.ivCategory.setImageDrawable(mContext.getResources().getDrawable(bookCategory.getIconId()));
         return convertView;
     }
 
-    class ViewHolder{
+    public void getSelectPositon(int positon) {
+        selectPosition = positon;
+    }
+
+    class ViewHolder {
         ImageView ivCategory;
         TextView tvCategory;
         private View itemView;

@@ -1,11 +1,11 @@
 package com.example.r.lifehelper.adapter;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +34,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
     @NonNull
     @Override
     public BookListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_list_book,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_list_book, parent, false);
         BookListHolder holder = new BookListHolder(view);
         return holder;
     }
@@ -53,25 +53,52 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
         return mBookList.size();
     }
 
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+    }
+
     /*刷新列表内容和视图*/
-    public void updateAdapter(List<Book> books){
+    public void updateAdapter(List<Book> books) {
         mBookList = books;
         BookLab.getBookLab(mContext).updateBookList(mBookList);
         notifyDataSetChanged();
     }
 
     /*添加列表内容和新视图*/
-    public void insertItems(int position,List<Book> books){
+    public void insertItems(int position, List<Book> books) {
         for (int i = 0; i < books.size(); i++) {
-            mBookList.add(position + i,books.get(i));
+            mBookList.add(position + i, books.get(i));
             notifyItemInserted(position + i);
-            notifyItemChanged(position,mBookList.size() - (position + i));
+            notifyItemChanged(position, mBookList.size() - (position + i));
         }
     }
 
-    class BookListHolder extends RecyclerView.ViewHolder{
+    @Override
+    public void onViewRecycled(@NonNull BookListHolder holder) {
+        super.onViewRecycled(holder);
+        releaseImageViewResource(holder);
+    }
+
+    /*对Imageview的资源进行回收*/
+    public void releaseImageViewResource(BookListHolder holder){
+        if (holder.ivImg == null){
+            return;
+        }
+        Drawable drawable = holder.ivImg.getDrawable();
+        if (drawable != null && drawable instanceof BitmapDrawable){
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+            if (bitmap != null && !bitmap.isRecycled()) {
+                bitmap.recycle();
+            }
+        }
+    }
+
+    class BookListHolder extends RecyclerView.ViewHolder {
         private ImageView ivImg;
-        private TextView tvTile,tvAuthor,tvSummary;
+        private TextView tvTile, tvAuthor, tvSummary;
+
         private BookListHolder(View itemView) {
             super(itemView);
             ivImg = itemView.findViewById(R.id.item_book_image_large);
@@ -80,20 +107,20 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
             tvSummary = itemView.findViewById(R.id.item_book_summary);
         }
 
-        private void bindHolder(Book book){
+        private void bindHolder(Book book) {
             tvTile.setText(book.getTitle());
             tvAuthor.setText(book.getAuthor());
             tvSummary.setText(book.getSummary());
             ivImg.setTag(book.getImageUrl());
             ImageLoader imageLoader = new ImageLoader(mContext);
-            imageLoader.loadBitmapByThread(ivImg,book.getImageUrl(),300,300);
+            imageLoader.loadRoundBitmapByThread(ivImg, book.getImageUrl(), 300, 300);
         }
 
-        private void bindHolderClick(final Book book){
+        private void bindHolderClick(final Book book) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = BookActivity.newIntent(mContext, book.getTitle());
+                    Intent intent = BookActivity.newIntent(mContext, book.getId());
                     mContext.startActivity(intent);
                 }
             });

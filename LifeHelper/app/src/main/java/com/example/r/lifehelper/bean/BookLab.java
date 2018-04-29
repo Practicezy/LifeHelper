@@ -4,7 +4,9 @@ import android.content.Context;
 
 
 import com.example.r.lifehelper.data.BookListAsyncTask;
+
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class BookLab {
@@ -13,8 +15,8 @@ public class BookLab {
     private BookListAsyncTask mTask;
     private Context mContext;
 
-    public static BookLab getBookLab(Context context){
-        if (sBookLab == null){
+    public static BookLab getBookLab(Context context) {
+        if (sBookLab == null) {
             sBookLab = new BookLab(context);
         }
         return sBookLab;
@@ -33,21 +35,21 @@ public class BookLab {
         }
     }
 
-    public List<Book> getBooks(){
+    public List<Book> getBooks() {
         return mBooks;
     }
 
-    public Book getBook(String title){
-        for (Book book:mBooks
-             ) {
-            if (book.getTitle().equals(title)){
+    public Book getBook(UUID id) {
+        for (Book book : mBooks
+                ) {
+            if (book.getId().equals(id)) {
                 return book;
             }
         }
         return null;
     }
 
-    public void updateBookList(List<Book> bookList){
+    public void updateBookList(List<Book> bookList) {
         mBooks = bookList;
     }
 

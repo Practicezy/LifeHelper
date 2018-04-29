@@ -1,7 +1,7 @@
 package com.example.r.lifehelper.bean;
 
 public class BookCategory {
-    private String mCategory,mUrl;
+    private String mCategory, mUrl;
     private int mIconId;
 
     public String getCategory() {

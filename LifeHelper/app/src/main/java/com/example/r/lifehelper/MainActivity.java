@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.r.lifehelper.fragment.IdealFragment;
-import com.example.r.lifehelper.fragment.LifeFragment;
-import com.example.r.lifehelper.fragment.NewsFragment;
+import com.example.r.lifehelper.fragment.BaseFragment.IdealFragment;
+import com.example.r.lifehelper.fragment.BaseFragment.LifeFragment;
+import com.example.r.lifehelper.fragment.BaseFragment.NewsFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private Toolbar mToolbar;
@@ -38,12 +39,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (isFinishing()) {
+            System.gc();
+        }
+    }
+
     private void initViewpager() {
         mViewPager = findViewById(R.id.vp_fragment_container);
         mViewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         return new NewsFragment();
                     case 1:
@@ -67,9 +76,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             @Override
             public void onPageSelected(int position) {
-                if (mMenuItem != null){
+                if (mMenuItem != null) {
                     mMenuItem.setChecked(false);
-                }else{
+                } else {
                     mBottomNavigationView.getMenu().getItem(0).setChecked(false);
                 }
                 mMenuItem = mBottomNavigationView.getMenu().getItem(position);
@@ -81,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             }
         });
+        mViewPager.setOffscreenPageLimit(0);
         mViewPager.setCurrentItem(0);
     }
 
@@ -94,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.navigation_news:
                 mViewPager.setCurrentItem(0);
                 return true;

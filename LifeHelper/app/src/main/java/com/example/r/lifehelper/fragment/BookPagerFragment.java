@@ -21,7 +21,7 @@ public class BookPagerFragment extends Fragment {
     private TextView tvContent;
     private static final String CONTENT_ARGS = "com.example.r.lifehelper.fragment.content_args";
 
-    public static Fragment newInstance(String urlSpec){
+    public static Fragment newInstance(String urlSpec) {
         BookPagerFragment fragment = new BookPagerFragment();
         Bundle args = new Bundle();
         args.putString(CONTENT_ARGS, urlSpec);
@@ -46,7 +46,7 @@ public class BookPagerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.item_viewpager_book_content,container,false);
+        View view = inflater.inflate(R.layout.item_viewpager_book_content, container, false);
         /*显示书的内容详情*/
         tvContent = view.findViewById(R.id.tv_book_content);
         tvContent.setText(mBookChapter.getContent());

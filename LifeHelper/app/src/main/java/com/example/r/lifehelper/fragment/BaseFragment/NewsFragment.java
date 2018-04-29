@@ -2,6 +2,7 @@ package com.example.r.lifehelper.fragment.BaseFragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,8 @@ public class NewsFragment extends Fragment {
     private List<News> mNewsList;
     private NewsAdapter mAdapter;
     private TabLayout mTabLayout;
+    private boolean isInit = false;
+    private static final String TAG = "NewsFragment";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,12 +44,33 @@ public class NewsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_list_news,container,false);
-        /*新闻标签初始化*/
-        setupTabLayout();
-        /*列表初始化*/
-        initList();
+        mView = inflater.inflate(R.layout.fragment_list_news, container, false);
+        isInit = true;
+        isCanLoadData();
         return mView;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            isCanLoadData();
+        }else {
+            isInit = false;
+        }
+    }
+
+    private void isCanLoadData() {
+        if (!isInit) {
+            return;
+        }
+
+        if (getUserVisibleHint()) {
+            /*新闻标签初始化*/
+            setupTabLayout();
+            /*列表初始化*/
+            initList();
+        }
     }
 
     private void initList() {
@@ -59,9 +84,9 @@ public class NewsFragment extends Fragment {
         mTabLayout = mView.findViewById(R.id.tab_layout);
         String[] tabs = getResources().getStringArray(R.array.tabs);
         int i = 0;
-        for (String s:tabs
-                 ) {
-            mTabLayout.addTab(mTabLayout.newTab().setText(s),i++);
+        for (String s : tabs
+                ) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(s), i++);
         }
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -88,6 +113,13 @@ public class NewsFragment extends Fragment {
         super.onResume();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mAdapter = null;
+        System.gc();
+    }
+
     /*设置双击标题事件*/
     private void initToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
@@ -101,7 +133,7 @@ public class NewsFragment extends Fragment {
 
     /*根据标签名来刷新数据*/
     private void switchTab(TabLayout.Tab tab) {
-        switch (tab.getPosition()){
+        switch (tab.getPosition()) {
             case 0:
                 setupAdapter(getResources().getString(R.string.news_top));
                 break;
@@ -129,10 +161,10 @@ public class NewsFragment extends Fragment {
     /*根据给定的字符串来刷新列表数据*/
     private void setupAdapter(String urlSpec) {
         mNewsList = new NewsLoader().loadNewsByAsyncTask(urlSpec);
-        if(mAdapter == null){
+        if (mAdapter == null) {
             mAdapter = new NewsAdapter(getActivity(), mNewsList);
             rvNews.setAdapter(mAdapter);
-        }else {
+        } else {
             mAdapter.updateAdapter(mNewsList);
         }
     }
