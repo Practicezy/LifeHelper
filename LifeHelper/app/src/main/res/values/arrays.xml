@@ -8,6 +8,9 @@
         <item name="news_yule">娱乐</item>
         <item name="news_tiyu">体育</item>
         <item name="news_junshi">军事</item>
+        <item name="news_keji">科技</item>
+        <item name="news_caijing">财经</item>
+        <item name="news_shishang">时尚</item>
     </string-array>
 
 </resources>

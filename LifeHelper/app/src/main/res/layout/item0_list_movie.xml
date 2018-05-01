@@ -40,8 +40,21 @@
                 android:layout_height="38dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
+                android:adjustViewBounds="true"
                 android:src="@mipmap/ic_launcher_new_round"
                 tools:ignore="ContentDescription,RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/tv_movie_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="@string/movie_category"
+                android:textColor="@color/colorLightDarkBlue"
+                android:textSize="12sp"
+                tools:ignore="HardcodedText,RtlHardcoded" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -50,6 +63,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="30dp"
                 android:layout_toRightOf="@id/iv_movie_avatar"
+                android:layout_toLeftOf="@id/tv_movie_category"
                 android:orientation="vertical"
                 tools:ignore="RelativeOverlap,RtlHardcoded">
 
@@ -72,19 +86,6 @@
                     android:textColor="@color/colorLightBlack"
                     tools:ignore="SmallSp" />
             </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/tv_movie_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:text="@string/movie_category"
-                android:textColor="@color/colorLightDarkBlue"
-                android:textSize="12sp"
-                tools:ignore="HardcodedText,RtlHardcoded" />
 
             <View
                 android:layout_width="match_parent"

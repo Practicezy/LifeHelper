@@ -22,7 +22,9 @@
         </activity>
         <activity
             android:name=".NewsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".NewsListActivity" />
+        <activity android:name=".NewsListActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".BookActivity"
             android:parentActivityName=".MainActivity"></activity>
     </application>

@@ -16,6 +16,9 @@
     <string name="news_yule">yule</string>
     <string name="news_tiyu">tiyu</string>
     <string name="news_junshi">junshi</string>
+    <string name="news_keji">keji</string>
+    <string name="news_caijing">caijing</string>
+    <string name="news_shishang">shishang</string>
     <string name="loading">努力加载中。。。</string>
     <string name="book">Book</string>
     <string name="movie">Movie</string>
@@ -31,4 +34,5 @@
     <string name="movie_title">一敲二腌三过油，轻松学会炒牛柳</string>
     <string name="movie_tag">标签</string>
     <string name="movie_category">2天前</string>
+    <string name="news">News</string>
 </resources>

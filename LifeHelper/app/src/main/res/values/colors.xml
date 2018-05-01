@@ -17,8 +17,11 @@
     <color name="colorLightDarkBlue">#700000FF</color>
     <color name="colorLightYellow">#70FFFF00</color>
     <color name="colorLightBlue">#7000FFFF</color>
+    <color name="colorOrange">#FFA500</color>
+    <color name="colorLightOrange">#70FFA500</color>
+    <color name="colorLightChartreuse">#707FFF00</color>
     <color name="background">#f7f7f7</color>
     <color name="cv_bg">#fdfdfd</color>
-    <color name="window_bg">#ffffff</color>
+    <color name="white">#ffffff</color>
     <color name="text">#000000</color>
 </resources>

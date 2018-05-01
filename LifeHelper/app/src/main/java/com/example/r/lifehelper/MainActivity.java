@@ -3,9 +3,11 @@ package com.example.r.lifehelper;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.transition.Transition;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,8 +19,6 @@ import com.example.r.lifehelper.fragment.BaseFragment.LifeFragment;
 import com.example.r.lifehelper.fragment.BaseFragment.NewsFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    private Toolbar mToolbar;
-    private TextView mToolbarTitle;
     private BottomNavigationView mBottomNavigationView;
     private ViewPager mViewPager;
     private MenuItem mMenuItem;
@@ -95,11 +95,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void initToolbar() {
-        mToolbar = findViewById(R.id.toolbar);
-        mToolbar.setTitle("");
-        mToolbarTitle = findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText(getResources().getString(R.string.app_name));
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        TextView toolbarTitle = findViewById(R.id.toolbar_title);
+        toolbarTitle.setText(getResources().getString(R.string.app_name));
+        setSupportActionBar(toolbar);
     }
 
     @Override
