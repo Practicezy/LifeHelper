@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAsyncTask extends AsyncTask<String, Void, List<Movie>> {
-
+    private static final String TAG = "MovieAsyncTask";
+    
     @Override
     protected List<Movie> doInBackground(String... strings) {
         String url = strings[0];
@@ -27,6 +28,7 @@ public class MovieAsyncTask extends AsyncTask<String, Void, List<Movie>> {
         List<Movie> movieList = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(urlString);
+            String nextPage = jsonObject.getString("nextPageUrl");
             JSONArray jsonArray = jsonObject.getJSONArray("itemList");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
@@ -55,6 +57,7 @@ public class MovieAsyncTask extends AsyncTask<String, Void, List<Movie>> {
                     String url = data.getString("playUrl");
 
                     Movie movie = new Movie();
+                    movie.setNextPageUrl(nextPage);
                     movie.setId(id);
                     movie.setTitle(title);
                     movie.setDescription(description);

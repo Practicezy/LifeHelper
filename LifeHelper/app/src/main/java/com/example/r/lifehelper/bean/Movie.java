@@ -2,7 +2,7 @@ package com.example.r.lifehelper.bean;
 
 public class Movie {
     private int mId;
-    private String mTitle,mDescription,mTags,mCategory,mCoverUrl,mUrl,mAvatarUrl,mAuthor;
+    private String mTitle,mDescription,mTags,mCategory,mCoverUrl,mUrl,mAvatarUrl,mAuthor,mNextPageUrl;
 
     public int getId() {
         return mId;
@@ -74,5 +74,13 @@ public class Movie {
 
     public void setAuthor(String author) {
         mAuthor = author;
+    }
+
+    public String getNextPageUrl() {
+        return mNextPageUrl;
+    }
+
+    public void setNextPageUrl(String nextPageUrl) {
+        mNextPageUrl = nextPageUrl;
     }
 }

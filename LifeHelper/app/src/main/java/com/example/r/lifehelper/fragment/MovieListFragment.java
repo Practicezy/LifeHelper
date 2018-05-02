@@ -1,5 +1,8 @@
 package com.example.r.lifehelper.fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,6 +24,7 @@ import com.example.r.lifehelper.data.MovieAsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MovieListFragment extends Fragment {
     private RecyclerView rvMovieList;
@@ -28,15 +32,16 @@ public class MovieListFragment extends Fragment {
     private MovieListAdapter mAdapter;
     private boolean isInit = false;
     private boolean isHidden = true;
+    private View mView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_movie_list,container,false);
-        rvMovieList = view.findViewById(R.id.rv_life_movie);
+        mView = inflater.inflate(R.layout.fragment_movie_list,container,false);
+        rvMovieList = mView.findViewById(R.id.rv_life_movie);
         isInit = true;
         isCanLoadData();
-        return view;
+        return mView;
     }
 
     @Override
@@ -59,6 +64,41 @@ public class MovieListFragment extends Fragment {
             mMovieList = MovieLab.getMovieLab().getMovieList();
             rvMovieList.setLayoutManager(new LinearLayoutManager(getActivity()));
             setupAdapter();
+            rvMovieList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    int totalItemCount = recyclerView.getAdapter().getItemCount();
+                    final int lastVisibleCount = lm.findLastVisibleItemPosition();
+                    int visibleItemCount = recyclerView.getChildCount();
+
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleCount == totalItemCount -1
+                            && visibleItemCount > 0){
+                        String urlNext = mMovieList.get(mMovieList.size()-1).getNextPageUrl();
+                        try {
+                            final View animatorView = mView.findViewById(R.id.animator_movie_list);
+                            animatorView.setVisibility(View.VISIBLE);
+                            mMovieList = new MovieAsyncTask().execute(urlNext).get();
+                            ObjectAnimator oa = ObjectAnimator.ofFloat(animatorView, "rotation", 0f, 360f);
+                            oa.setDuration(3000);
+                            oa.start();
+                            oa.addListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+                                    animatorView.setVisibility(View.GONE);
+                                    mAdapter.insertItems(lastVisibleCount + 1,mMovieList);
+                                }
+                            });
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
         }
     }
 

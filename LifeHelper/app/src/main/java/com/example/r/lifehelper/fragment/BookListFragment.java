@@ -1,5 +1,8 @@
 package com.example.r.lifehelper.fragment;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -23,39 +27,52 @@ import com.example.r.lifehelper.bean.BookCategoryLab;
 import com.example.r.lifehelper.bean.BookLab;
 import com.example.r.lifehelper.data.BookListAsyncTask;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class BookListFragment extends Fragment {
     private RecyclerView rvBookList;
-    private List<Book> mBookList;
+    private List<Book> mBookList = new ArrayList<>();
     private BookListAdapter mAdapter;
     private List<BookCategory> mBookCategories;
     private GridView gvBookCategory;
     private BookCategoryAdapter categoryAdapter;
     private BookCategory mBookCategory;
+    private View mView;
 
     /*初始化UI元素*/
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_life_book_list, container, false);
+        mView = inflater.inflate(R.layout.fragment_life_book_list, container, false);
         /*初始化数据*/
-        mBookList = BookLab.getBookLab(getActivity()).getBooks();
         mBookCategories = BookCategoryLab.getBookCategoryLab().getBookCategories();
         /*初始化类别列表*/
-        initCategory(view);
+        initCategory(mView);
         /*设置类别列表的点击事件*/
         gvBookCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 categoryAdapter.getSelectPositon(i);
-                categoryAdapter.notifyDataSetChanged();
+                categoryAdapter.notifyDataSetInvalidated();
+                final View animatorView = getActivity().findViewById(R.id.animator_life_loading);
+                animatorView.setVisibility(View.VISIBLE);
+                ObjectAnimator oa = ObjectAnimator.ofFloat(animatorView, "rotation",0f, 360f);
+                oa.setDuration(3000);
+                oa.start();
                 mBookCategory = mBookCategories.get(i);
                 String newUrl = mBookCategory.getUrl();
                 try {
                     mBookList = new BookListAsyncTask().execute(newUrl).get();
-                    setupAdapter();
+                    oa.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            animatorView.setVisibility(View.GONE);
+                            setupAdapter();
+                        }
+                    });
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -64,7 +81,7 @@ public class BookListFragment extends Fragment {
             }
         });
         /*初始化详情列表*/
-        initList(view);
+        initList(mView);
         /*下拉加载更多*/
         rvBookList.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -72,7 +89,7 @@ public class BookListFragment extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 LinearLayoutManager lm = (LinearLayoutManager) rvBookList.getLayoutManager();
                 int totalItemCount = rvBookList.getAdapter().getItemCount();
-                int lastVisibleCount = lm.findLastVisibleItemPosition();
+                final int lastVisibleCount = lm.findLastVisibleItemPosition();
                 int visibleItemCount = rvBookList.getChildCount();
 
                 if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleCount == totalItemCount - 1
@@ -81,8 +98,20 @@ public class BookListFragment extends Fragment {
                     int i = 2;
                     String urlPage = urlRecent + "index_" + (i++) + ".html";
                     try {
+                        final View animatorView = mView.findViewById(R.id.animator_book_list);
+                        animatorView.setVisibility(View.VISIBLE);
                         mBookList = new BookListAsyncTask().execute(urlPage).get();
-                        mAdapter.insertItems(lastVisibleCount + 1, mBookList);
+                        ObjectAnimator oa = ObjectAnimator.ofFloat(animatorView, "rotation", 0f, 360f);
+                        oa.setDuration(3000);
+                        oa.start();
+                        oa.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                animatorView.setVisibility(View.GONE);
+                                mAdapter.insertItems(lastVisibleCount + 1,mBookList);
+                            }
+                        });
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } catch (ExecutionException e) {
@@ -91,7 +120,7 @@ public class BookListFragment extends Fragment {
                 }
             }
         });
-        return view;
+        return mView;
     }
 
     @Override
@@ -106,8 +135,7 @@ public class BookListFragment extends Fragment {
         gvBookCategory = view.findViewById(R.id.gv_life_book);
         categoryAdapter = new BookCategoryAdapter(mBookCategories, getActivity());
         gvBookCategory.setAdapter(categoryAdapter);
-        mBookCategory = mBookCategories.get(9);
-        categoryAdapter.getSelectPositon(9);
+        categoryAdapter.getSelectPositon(Adapter.NO_SELECTION);
     }
 
     private void initList(View view) {

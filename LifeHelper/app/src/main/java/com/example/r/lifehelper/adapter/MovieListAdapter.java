@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.r.lifehelper.R;
+import com.example.r.lifehelper.bean.Book;
 import com.example.r.lifehelper.bean.Movie;
 import com.example.r.lifehelper.bean.MovieLab;
 import com.example.r.lifehelper.utils.ImageLoader;
@@ -90,6 +91,15 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         mMovieList = movies;
         MovieLab.getMovieLab().updateMovieList(mMovieList);
         notifyDataSetChanged();
+    }
+
+    /*添加列表内容和新视图*/
+    public void insertItems(int position, List<Movie> movies) {
+        for (int i = 0; i < movies.size(); i++) {
+            mMovieList.add(position + i, movies.get(i));
+            notifyItemInserted(position + i);
+            notifyItemChanged(position, mMovieList.size() - (position + i));
+        }
     }
 
     class MovieListHolder extends RecyclerView.ViewHolder {

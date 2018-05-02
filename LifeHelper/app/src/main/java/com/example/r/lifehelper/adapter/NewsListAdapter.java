@@ -45,7 +45,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
     private void getRandomHeights(){
         mHeights = new ArrayList<>();
         for (int i = 0; i < titles.size(); i++) {
-            mHeights.add((int) (500 + Math.random()*100));
+            mHeights.add((int) (350 /*+ Math.random()*100*/));
         }
     }
 
@@ -68,7 +68,6 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
         String title_zh = titles_zh.get(position);
         holder.ivNews.setBackgroundResource(bgColor);
         holder.tvNews.setText(title);
-        holder.tvNews.setTextColor((position % 2==0)? mContext.getResources().getColor(R.color.text):mContext.getResources().getColor(R.color.white));
         holder.tvNews.append(title_zh);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

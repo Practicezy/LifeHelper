@@ -23,7 +23,7 @@ public class BookLab {
     }
 
     private BookLab(Context context) {
-        mContext = context.getApplicationContext();
+        mContext = context;
         mTask = new BookListAsyncTask();
         mTask.execute("https://www.qisuu.la/soft/sort010/");
         try {
