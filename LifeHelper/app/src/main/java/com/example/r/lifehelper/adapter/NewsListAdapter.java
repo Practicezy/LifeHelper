@@ -1,10 +1,13 @@
 package com.example.r.lifehelper.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
             R.color.colorLightGreen,R.color.colorLightBlue,R.color.colorLightYellow,R.color.colorLightBlack,
     R.color.colorLightDarkBlue,R.color.colorLightRed,R.color.colorLightChartreuse,
             R.color.colorStarBlue,R.color.colorLightOrange));
+    private static final String TAG = "NewsListAdapter";
 
     private List<Integer> titles = new ArrayList<Integer>(Arrays.asList(R.string.news_top,
             R.string.news_shehui,R.string.news_guonei,R.string.news_guoji,R.string.news_yule,

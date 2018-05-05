@@ -1,6 +1,7 @@
 package com.example.r.lifehelper.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.r.lifehelper.R;
+import com.example.r.lifehelper.VideoActivity;
 import com.example.r.lifehelper.bean.Book;
 import com.example.r.lifehelper.bean.Movie;
 import com.example.r.lifehelper.bean.MovieLab;
@@ -66,7 +68,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     @Override
     public void onBindViewHolder(@NonNull final MovieListHolder holder, int position) {
-        Movie movie = mMovieList.get(position);
+        final Movie movie = mMovieList.get(position);
         holder.tvMovieTitle.setText(movie.getTitle());
         holder.tvMovieCategory.setText(movie.getCategory());
         holder.tvMovieTags.setText(movie.getTags());
@@ -77,6 +79,13 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(mContext.getResources(),resource);
                 drawable.setCircular(true);
                 holder.ivMovieAvatar.setImageDrawable(drawable);
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = VideoActivity.newIntent(mContext, movie.getId());
+                mContext.startActivity(intent);
             }
         });
     }

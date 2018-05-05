@@ -15,7 +15,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/font_lucia</item>
     </style>
-    <style name="CircleDrawble">
+    <style name="CircleDrawable">
         <item name="android:shape">oval</item>
     </style>
     <style name="EnglishTextStyle">

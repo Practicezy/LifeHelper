@@ -3,7 +3,7 @@ package com.example.r.lifehelper.utils;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class onDubleClickListener implements View.OnTouchListener {
+public class onDoubleClickListener implements View.OnTouchListener {
     private DoubleClickCallback mCallback;
     /*点击次数*/
     private int count = 0;
@@ -19,7 +19,7 @@ public class onDubleClickListener implements View.OnTouchListener {
         void onDoubleClick();
     }
 
-    public onDubleClickListener(DoubleClickCallback callback) {
+    public onDoubleClickListener(DoubleClickCallback callback) {
         mCallback = callback;
     }
 

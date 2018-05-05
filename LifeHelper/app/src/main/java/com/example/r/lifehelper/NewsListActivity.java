@@ -1,7 +1,6 @@
 package com.example.r.lifehelper;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 import com.example.r.lifehelper.adapter.NewsAdapter;
 import com.example.r.lifehelper.bean.News;
 import com.example.r.lifehelper.utils.NewsLoader;
-import com.example.r.lifehelper.utils.onDubleClickListener;
+import com.example.r.lifehelper.utils.onDoubleClickListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -146,7 +145,7 @@ public class NewsListActivity extends AppCompatActivity {
         toolbarTitle.setText(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setOnTouchListener(new onDubleClickListener(new onDubleClickListener.DoubleClickCallback() {
+        toolbar.setOnTouchListener(new onDoubleClickListener(new onDoubleClickListener.DoubleClickCallback() {
             @Override
             public void onDoubleClick() {
                 rvNews.scrollToPosition(0);

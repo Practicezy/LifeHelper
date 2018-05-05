@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.adapter.BookCategoryAdapter;
@@ -24,7 +23,6 @@ import com.example.r.lifehelper.adapter.BookListAdapter;
 import com.example.r.lifehelper.bean.Book;
 import com.example.r.lifehelper.bean.BookCategory;
 import com.example.r.lifehelper.bean.BookCategoryLab;
-import com.example.r.lifehelper.bean.BookLab;
 import com.example.r.lifehelper.data.BookListAsyncTask;
 
 import java.util.ArrayList;
