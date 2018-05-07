@@ -8,11 +8,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
-import com.example.r.lifehelper.MyApplication;
 import com.example.r.lifehelper.R;
 
 

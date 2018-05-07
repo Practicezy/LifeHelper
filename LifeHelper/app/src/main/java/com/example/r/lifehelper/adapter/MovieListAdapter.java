@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.example.r.lifehelper.R;
-import com.example.r.lifehelper.VideoActivity;
-import com.example.r.lifehelper.bean.Book;
+import com.example.r.lifehelper.activity.VideoActivity;
 import com.example.r.lifehelper.bean.Movie;
 import com.example.r.lifehelper.bean.MovieLab;
-import com.example.r.lifehelper.utils.ImageLoader;
 
 import java.util.List;
 

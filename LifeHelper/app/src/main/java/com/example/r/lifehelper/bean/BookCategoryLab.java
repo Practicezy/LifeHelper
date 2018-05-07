@@ -10,8 +10,10 @@ public class BookCategoryLab {
     private List<BookCategory> mBookCategories;
 
     public static BookCategoryLab getBookCategoryLab() {
-        if (sBookCategoryLab == null) {
-            sBookCategoryLab = new BookCategoryLab();
+        synchronized (BookCategoryLab.class){
+            if (sBookCategoryLab == null) {
+                sBookCategoryLab = new BookCategoryLab();
+            }
         }
         return sBookCategoryLab;
     }

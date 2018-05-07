@@ -1,15 +1,15 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.fragment.BookDetailFragment;
 
 import java.util.UUID;
@@ -44,7 +44,8 @@ public class BookActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("");
         mToolbarTitle = findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText(getResources().getString(R.string.app_name));
+        mToolbarTitle.setText(R.string.book_label);
+        mToolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/lucia.ttf"));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

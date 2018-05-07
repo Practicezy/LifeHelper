@@ -1,8 +1,9 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,10 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
+import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.adapter.NewsAdapter;
 import com.example.r.lifehelper.bean.News;
+import com.example.r.lifehelper.utils.EmptyRecyclerView;
 import com.example.r.lifehelper.utils.NewsLoader;
 import com.example.r.lifehelper.utils.onDoubleClickListener;
 
@@ -22,7 +26,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NewsListActivity extends AppCompatActivity {
-    private RecyclerView rvNews;
+    private EmptyRecyclerView rvNews;
+//    private RecyclerView rvNews;
     private List<News> mNewsList;
     private NewsAdapter mAdapter;
     private TabLayout mTabLayout;
@@ -129,6 +134,8 @@ public class NewsListActivity extends AppCompatActivity {
     /*根据给定的字符串来刷新列表数据*/
     private void setupAdapter(String urlSpec) {
         mNewsList = new NewsLoader().loadNewsByAsyncTask(urlSpec);
+        View emptyView = findViewById(R.id.empty_view);
+        rvNews.setEmptyView(emptyView);
         if (mAdapter == null) {
             mAdapter = new NewsAdapter(this, mNewsList);
             rvNews.setAdapter(mAdapter);
@@ -142,7 +149,8 @@ public class NewsListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         TextView toolbarTitle = findViewById(R.id.toolbar_title);
-        toolbarTitle.setText(getResources().getString(R.string.app_name));
+        toolbarTitle.setText(R.string.news_label);
+        toolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/lucia.ttf"));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setOnTouchListener(new onDoubleClickListener(new onDoubleClickListener.DoubleClickCallback() {

@@ -15,8 +15,15 @@
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/colorAccent"></android.support.design.widget.TabLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rv_list_news"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>-->
+    <com.example.r.lifehelper.utils.EmptyRecyclerView
         android:id="@+id/rv_list_news"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"></com.example.r.lifehelper.utils.EmptyRecyclerView>
+
+    <include android:id="@+id/empty_view"
+        layout="@layout/empty_view"/>
 </LinearLayout>

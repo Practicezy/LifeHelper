@@ -21,13 +21,14 @@ import com.example.r.lifehelper.adapter.MovieListAdapter;
 import com.example.r.lifehelper.bean.Movie;
 import com.example.r.lifehelper.bean.MovieLab;
 import com.example.r.lifehelper.data.MovieAsyncTask;
+import com.example.r.lifehelper.utils.EmptyRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MovieListFragment extends Fragment {
-    private RecyclerView rvMovieList;
+    private EmptyRecyclerView rvMovieList;
     private List<Movie> mMovieList = new ArrayList<>();
     private MovieListAdapter mAdapter;
     private boolean isInit = false;
@@ -63,6 +64,8 @@ public class MovieListFragment extends Fragment {
         if (!isHidden){
             mMovieList = MovieLab.getMovieLab().getMovieList();
             rvMovieList.setLayoutManager(new LinearLayoutManager(getActivity()));
+            View emptyView = mView.findViewById(R.id.empty_view);
+            rvMovieList.setEmptyView(emptyView);
             setupAdapter();
             rvMovieList.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override

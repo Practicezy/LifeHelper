@@ -1,20 +1,16 @@
 package com.example.r.lifehelper.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.r.lifehelper.NewsListActivity;
+import com.example.r.lifehelper.activity.NewsListActivity;
 import com.example.r.lifehelper.R;
 
 import java.util.ArrayList;
@@ -49,7 +45,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
     private void getRandomHeights(){
         mHeights = new ArrayList<>();
         for (int i = 0; i < titles.size(); i++) {
-            mHeights.add((int) (350 /*+ Math.random()*100*/));
+            mHeights.add((int) (350 + Math.random()*100));
         }
     }
 

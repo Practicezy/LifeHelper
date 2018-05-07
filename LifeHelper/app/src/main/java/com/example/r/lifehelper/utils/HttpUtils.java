@@ -17,12 +17,12 @@ public class HttpUtils {
     @Nullable
     public static byte[] getByteArrayFromUrl(String urlSpec) {
         HttpURLConnection connection = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             URL url = new URL(urlSpec);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             InputStream is = connection.getInputStream();
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
             int len = 0;
             byte[] buffer = new byte[8 * 1024];
@@ -32,7 +32,6 @@ public class HttpUtils {
             }
             is.close();
             bos.close();
-            return bos.toByteArray();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -40,7 +39,7 @@ public class HttpUtils {
         } finally {
             connection.disconnect();
         }
-        return null;
+        return bos.toByteArray();
     }
 
     /*根据url解析出字符串*/

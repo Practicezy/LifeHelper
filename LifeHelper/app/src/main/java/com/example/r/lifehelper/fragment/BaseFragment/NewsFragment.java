@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.adapter.NewsListAdapter;
+import com.example.r.lifehelper.utils.EmptyRecyclerView;
 
 
 public class NewsFragment extends Fragment {

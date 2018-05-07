@@ -1,4 +1,4 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.activity;
 
 import android.app.Application;
 import android.content.Context;

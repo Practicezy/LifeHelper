@@ -16,10 +16,10 @@ public class NewsLoader {
     /*通过asyncTask加载新闻页*/
     public List<News> loadNewsByAsyncTask(String urlSpec) {
         List<News> newsList = new ArrayList<>();
-        NewsAasynctask newsAasynctask = new NewsAasynctask();
-        newsAasynctask.execute("http://api.avatardata.cn/TouTiao/Query?key=a00709490da64cf4ac51264d45f21c45&type=" + urlSpec);
+        NewsAsyncTask newsAsyncTask = new NewsAsyncTask();
+        newsAsyncTask.execute("http://api.avatardata.cn/TouTiao/Query?key=a00709490da64cf4ac51264d45f21c45&type=" + urlSpec);
         try {
-            newsList = newsAasynctask.get();
+            newsList = newsAsyncTask.get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -28,7 +28,7 @@ public class NewsLoader {
         return newsList;
     }
 
-    private class NewsAasynctask extends AsyncTask<String, Void, List<News>> {
+    private class NewsAsyncTask extends AsyncTask<String, Void, List<News>> {
 
         @Override
         protected List<News> doInBackground(String... strings) {

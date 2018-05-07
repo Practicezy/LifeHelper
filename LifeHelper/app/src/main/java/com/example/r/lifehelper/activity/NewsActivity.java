@@ -1,9 +1,10 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+
+import com.example.r.lifehelper.R;
 
 public class NewsActivity extends AppCompatActivity {
     private Toolbar mToolbar;
@@ -78,7 +81,8 @@ public class NewsActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle("");
         mToolbarTitle = findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText(getResources().getString(R.string.app_name));
+        mToolbarTitle.setText(R.string.news_label);
+        mToolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/lucia.ttf"));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

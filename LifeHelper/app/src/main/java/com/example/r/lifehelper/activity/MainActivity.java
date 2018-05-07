@@ -1,19 +1,17 @@
-package com.example.r.lifehelper;
+package com.example.r.lifehelper.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.transition.Transition;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.fragment.BaseFragment.IdealFragment;
 import com.example.r.lifehelper.fragment.BaseFragment.LifeFragment;
 import com.example.r.lifehelper.fragment.BaseFragment.NewsFragment;

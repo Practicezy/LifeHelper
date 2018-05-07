@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.r.lifehelper.BookActivity;
+import com.example.r.lifehelper.activity.BookActivity;
 import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.bean.Book;
 import com.example.r.lifehelper.bean.BookLab;

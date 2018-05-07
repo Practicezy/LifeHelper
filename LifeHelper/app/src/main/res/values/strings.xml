@@ -35,4 +35,7 @@
     <string name="movie_tag">标签</string>
     <string name="movie_category">2天前</string>
     <string name="news">News</string>
+    <string name="news_label">My News</string>
+    <string name="book_label">My Book</string>
+    <string name="empty">暂时还没有内容哦</string>
 </resources>

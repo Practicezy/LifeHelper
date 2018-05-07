@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.r.lifehelper.NewsActivity;
+import com.example.r.lifehelper.activity.NewsActivity;
 import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.bean.News;
 import com.example.r.lifehelper.utils.ImageLoader;

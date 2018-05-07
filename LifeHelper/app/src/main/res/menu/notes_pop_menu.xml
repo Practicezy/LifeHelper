@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/notes_menu_edit"
+        android:icon="@drawable/ic_notes_edit"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+    <item android:id="@+id/notes_menu_delete"
+        android:icon="@drawable/ic_notes_delete"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+    <item android:id="@+id/notes_menu_share"
+        android:icon="@drawable/ic_notes_share"
+        app:showAsAction="always"
+        tools:ignore="MenuTitle" />
+</menu>
