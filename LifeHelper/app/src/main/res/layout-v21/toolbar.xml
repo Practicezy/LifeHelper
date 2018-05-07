@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:minHeight="?android:attr/actionBarSize"
+        android:elevation="8dp"
         app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
         <TextView

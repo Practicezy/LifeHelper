@@ -23,12 +23,16 @@
         <activity
             android:name=".activity.NewsActivity"
             android:parentActivityName=".activity.NewsListActivity" />
-        <activity android:name=".activity.NewsListActivity"
-            android:parentActivityName=".activity.MainActivity"/>
-        <activity android:name=".activity.BookActivity"
-            android:parentActivityName=".activity.MainActivity"/>
-        <activity android:name=".activity.VideoActivity"
-            android:parentActivityName=".activity.MainActivity"/>
+        <activity
+            android:name=".activity.NewsListActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.BookActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.VideoActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.NoteActivity"></activity>
     </application>
 
 </manifest>

@@ -4,15 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/notes_menu_edit"
+        android:title="@string/note_edit"
         android:icon="@drawable/ic_notes_edit"
-        app:showAsAction="always"
-        tools:ignore="MenuTitle" />
+        app:showAsAction="ifRoom" />
     <item android:id="@+id/notes_menu_delete"
+        android:title="@string/note_delete"
         android:icon="@drawable/ic_notes_delete"
-        app:showAsAction="always"
-        tools:ignore="MenuTitle" />
+        app:showAsAction="ifRoom" />
     <item android:id="@+id/notes_menu_share"
+        android:title="@string/note_share"
         android:icon="@drawable/ic_notes_share"
-        app:showAsAction="always"
-        tools:ignore="MenuTitle" />
+        app:showAsAction="ifRoom" />
 </menu>

@@ -38,4 +38,11 @@
     <string name="news_label">My News</string>
     <string name="book_label">My Book</string>
     <string name="empty">暂时还没有内容哦</string>
+    <string name="notes_add">添加</string>
+    <string name="notes">Notes</string>
+    <string name="note_dialog_title">命题or保存？</string>
+    <string name="note_edit_hint">请输入你的文章标题</string>
+    <string name="note_edit">编辑</string>
+    <string name="note_delete">删除</string>
+    <string name="note_share">分享</string>
 </resources>

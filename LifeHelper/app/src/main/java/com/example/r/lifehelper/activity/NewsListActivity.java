@@ -27,7 +27,6 @@ import java.util.List;
 
 public class NewsListActivity extends AppCompatActivity {
     private EmptyRecyclerView rvNews;
-//    private RecyclerView rvNews;
     private List<News> mNewsList;
     private NewsAdapter mAdapter;
     private TabLayout mTabLayout;
@@ -55,10 +54,6 @@ public class NewsListActivity extends AppCompatActivity {
         initList();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     private void initList() {
         rvNews = findViewById(R.id.rv_list_news);

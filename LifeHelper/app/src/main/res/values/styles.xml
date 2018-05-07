@@ -21,4 +21,5 @@
     <style name="EnglishTextStyle">
         <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/font_lucia</item>
     </style>
+
 </resources>
