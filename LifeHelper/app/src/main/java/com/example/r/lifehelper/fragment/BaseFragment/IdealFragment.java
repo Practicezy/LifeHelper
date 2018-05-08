@@ -1,6 +1,5 @@
 package com.example.r.lifehelper.fragment.BaseFragment;
 
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 
 import com.example.r.lifehelper.R;
 import com.example.r.lifehelper.activity.NoteActivity;
@@ -47,7 +45,7 @@ public class IdealFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.notes_menu_add:
                 Note note = new Note();
-                NoteLab.getInstance().addNote(note);
+                NoteLab.getInstance(getActivity()).addNote(note);
                 Intent intent = NoteActivity.newIntent(getActivity(), note.getId());
                 startActivity(intent);
                 return true;
@@ -76,7 +74,7 @@ public class IdealFragment extends Fragment {
     }
 
     private void updateList() {
-        mNotes = NoteLab.getInstance().getNotes();
+        mNotes = NoteLab.getInstance(getActivity()).getNotes();
         if (mAdapter == null){
             mAdapter = new NoteAdapter(mNotes, getActivity());
             rvNotesList.setAdapter(mAdapter);

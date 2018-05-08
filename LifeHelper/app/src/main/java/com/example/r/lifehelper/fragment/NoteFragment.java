@@ -50,7 +50,7 @@ public class NoteFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         UUID id = (UUID) getArguments().getSerializable(ARGS_NOTE);
-        mNote = NoteLab.getInstance().getNote(id);
+        mNote = NoteLab.getInstance(getActivity()).getNote(id);
     }
 
     @Nullable
@@ -98,7 +98,7 @@ public class NoteFragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 mNote.setTitle(etTitle.getText().toString());
-                                NoteLab.getInstance().updateNote(mNote.getId());
+                                NoteLab.getInstance(getActivity()).updateNote(mNote);
                                 ctlTitle.setTitle(mNote.getTitle());
                                 dialog.dismiss();
 
@@ -121,7 +121,7 @@ public class NoteFragment extends Fragment {
                                 animatorSet.start();
                                 mNote.setContent(etContent.getText().toString());
                                 mNote.setDate(new Date(System.currentTimeMillis()));
-                                NoteLab.getInstance().updateNote(mNote.getId());
+                                NoteLab.getInstance(getActivity()).updateNote(mNote);
                                 etContent.setText(mNote.getContent());
                                 animatorSet.addListener(new Animator.AnimatorListener() {
                                     @Override

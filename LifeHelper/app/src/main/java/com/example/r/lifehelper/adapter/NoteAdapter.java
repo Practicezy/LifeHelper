@@ -127,7 +127,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
 
     public void removeItem(int position){
         notifyItemRemoved(position);
-        NoteLab.getInstance().deleteNote(mNoteList.get(position));
+        NoteLab.getInstance(mContext).deleteNote(mNoteList.get(position));
+        mNoteList = NoteLab.getInstance(mContext).getNotes();
+        updateItem(mNoteList);
     }
 
     public void updateItem(List<Note> notes){
