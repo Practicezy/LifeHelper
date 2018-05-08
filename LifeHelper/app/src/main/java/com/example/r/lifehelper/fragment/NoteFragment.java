@@ -88,7 +88,7 @@ public class NoteFragment extends Fragment {
                         btnCancel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                dialog.cancel();
+                                dialog.dismiss();
                             }
                         });
 
@@ -98,9 +98,9 @@ public class NoteFragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 mNote.setTitle(etTitle.getText().toString());
-                                NoteLab.getInstance().updateNote(mNote);
+                                NoteLab.getInstance().updateNote(mNote.getId());
                                 ctlTitle.setTitle(mNote.getTitle());
-                                dialog.cancel();
+                                dialog.dismiss();
 
                             }
                         });
@@ -110,12 +110,6 @@ public class NoteFragment extends Fragment {
                         ivSave.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                mNote.setTitle(etTitle.getText().toString());
-                                mNote.setContent(etContent.getText().toString());
-                                mNote.setDate(new Date(System.currentTimeMillis()));
-                                NoteLab.getInstance().updateNote(mNote);
-                                ctlTitle.setTitle(mNote.getTitle());
-                                etContent.setText(mNote.getContent());
                                 ObjectAnimator animator1 = ObjectAnimator.ofFloat(ivSave,"rotation",0f,180f);
                                 ObjectAnimator animator2 = ObjectAnimator.ofFloat(ivSave,"alpha",1f,0f);
                                 ObjectAnimator animator3 = ObjectAnimator.ofFloat(ivSaveSelected,"rotation",180f,360f);
@@ -125,7 +119,31 @@ public class NoteFragment extends Fragment {
                                 animatorSet.play(animator1).with(animator2).before(animator3).before(animator4).with(animator5);
                                 animatorSet.setDuration(800);
                                 animatorSet.start();
-                                dialog.cancel();
+                                mNote.setContent(etContent.getText().toString());
+                                mNote.setDate(new Date(System.currentTimeMillis()));
+                                NoteLab.getInstance().updateNote(mNote.getId());
+                                etContent.setText(mNote.getContent());
+                                animatorSet.addListener(new Animator.AnimatorListener() {
+                                    @Override
+                                    public void onAnimationStart(Animator animator) {
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animator animator) {
+                                        dialog.dismiss();
+                                    }
+
+                                    @Override
+                                    public void onAnimationCancel(Animator animator) {
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animator animator) {
+
+                                    }
+                                });
                             }
                         });
                     }

@@ -44,7 +44,8 @@
                 tools:text="Content Text"
                 android:ellipsize="end"
                 android:textColor="#413f3f"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                style="@style/ChineseTextStyle"/>
             <TextView
                 android:id="@+id/note_last_edit_text"
                 android:layout_width="wrap_content"

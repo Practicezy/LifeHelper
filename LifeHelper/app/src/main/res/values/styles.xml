@@ -13,13 +13,16 @@
     <style name="TabLayoutTextSize">
         <item name="android:textSize">@dimen/text_22_sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/font_lucia</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/font_yang</item>
     </style>
     <style name="CircleDrawable">
         <item name="android:shape">oval</item>
     </style>
     <style name="EnglishTextStyle">
-        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/font_lucia</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/font_yang</item>
+    </style>
+    <style name="ChineseTextStyle">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/yang_light</item>
     </style>
 
 </resources>

@@ -19,7 +19,7 @@
             android:layout_height="200dp"
             android:layout_margin="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/life_bg" />
+            android:src="@color/colorLightBrulyWood" />
 
         <TextView
             android:id="@+id/item_title"

@@ -45,7 +45,7 @@ public class BookActivity extends AppCompatActivity {
         mToolbar.setTitle("");
         mToolbarTitle = findViewById(R.id.toolbar_title);
         mToolbarTitle.setText(R.string.book_label);
-        mToolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/lucia.ttf"));
+        mToolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/yang.ttf"));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.r.lifehelper.R;
-import com.example.r.lifehelper.data.MovieAsyncTask;
 import com.example.r.lifehelper.fragment.BookListFragment;
 import com.example.r.lifehelper.fragment.MovieListFragment;
 
@@ -82,7 +81,7 @@ public class LifeFragment extends Fragment {
             }
         });
         mTabLayout.addTab(mTabLayout.newTab().setText(getResources().getString(R.string.book)), 0);
-        mTabLayout.addTab(mTabLayout.newTab().setText(getResources().getString(R.string.movie)), 1);
+        mTabLayout.addTab(mTabLayout.newTab().setText(getResources().getString(R.string.video)), 1);
     }
 
     /*分别为标签创建对应的Fragment*/

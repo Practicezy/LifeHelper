@@ -21,7 +21,7 @@
     <string name="news_shishang">shishang</string>
     <string name="loading">努力加载中。。。</string>
     <string name="book">Book</string>
-    <string name="movie">Movie</string>
+    <string name="video">Video</string>
     <string name="search_hint">请输入搜索内容</string>
     <string name="detail_author">作者：</string>
     <string name="detail_action">动作：</string>

@@ -1,10 +1,12 @@
 package com.example.r.lifehelper.fragment.BaseFragment;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 
 import com.example.r.lifehelper.R;
+import com.example.r.lifehelper.activity.NoteActivity;
 import com.example.r.lifehelper.adapter.NoteAdapter;
 import com.example.r.lifehelper.bean.Note;
 import com.example.r.lifehelper.bean.NoteLab;
@@ -43,6 +46,10 @@ public class IdealFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.notes_menu_add:
+                Note note = new Note();
+                NoteLab.getInstance().addNote(note);
+                Intent intent = NoteActivity.newIntent(getActivity(), note.getId());
+                startActivity(intent);
                 return true;
             default:
                 return true;
@@ -55,7 +62,7 @@ public class IdealFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ideal,container,false);
         rvNotesList = view.findViewById(R.id.rv_notes_list);
         rvNotesList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvNotesList.setAnimation(new AlphaAnimation(0f,1f));
+        rvNotesList.setItemAnimator(new DefaultItemAnimator());
         View emptyView = view.findViewById(R.id.empty_view);
         rvNotesList.setEmptyView(emptyView);
         updateList();
@@ -74,7 +81,7 @@ public class IdealFragment extends Fragment {
             mAdapter = new NoteAdapter(mNotes, getActivity());
             rvNotesList.setAdapter(mAdapter);
         }else {
-            mAdapter.notifyDataSetChanged();
+            mAdapter.updateItem(mNotes);
         }
     }
 }

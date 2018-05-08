@@ -145,7 +145,7 @@ public class NewsListActivity extends AppCompatActivity {
         toolbar.setTitle("");
         TextView toolbarTitle = findViewById(R.id.toolbar_title);
         toolbarTitle.setText(R.string.news_label);
-        toolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/lucia.ttf"));
+        toolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/yang.ttf"));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setOnTouchListener(new onDoubleClickListener(new onDoubleClickListener.DoubleClickCallback() {

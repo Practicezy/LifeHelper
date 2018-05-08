@@ -82,7 +82,7 @@ public class NewsActivity extends AppCompatActivity {
         mToolbar.setTitle("");
         mToolbarTitle = findViewById(R.id.toolbar_title);
         mToolbarTitle.setText(R.string.news_label);
-        mToolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/lucia.ttf"));
+        mToolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/yang.ttf"));
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
