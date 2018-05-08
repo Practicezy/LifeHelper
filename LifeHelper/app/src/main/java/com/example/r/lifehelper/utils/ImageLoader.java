@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
@@ -65,11 +66,9 @@ public class ImageLoader {
                 @Override
                 public void run() {
                     byte[] imgStream = HttpUtils.getByteArrayFromUrl(urlSpec);
-                    Bitmap bitmap;
-                    if (imgStream == null) {
+                    Bitmap bitmap = getBitmapFromUrl(imgStream, reqWidth, reqHeight);;
+                    if (bitmap == null) {
                         bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.nocover);
-                    } else {
-                        bitmap = getBitmapFromUrl(imgStream, reqWidth, reqHeight);
                     }
                     addBitmaptoMemoryCache(urlSpec, bitmap);
                     Message msg = myHandler.obtainMessage();
@@ -93,11 +92,9 @@ public class ImageLoader {
                 @Override
                 public void run() {
                     byte[] imgStream = HttpUtils.getByteArrayFromUrl(urlSpec);
-                    Bitmap bitmap;
-                    if (imgStream == null) {
+                    Bitmap bitmap = getBitmapFromUrl(imgStream, reqWidth, reqHeight);
+                    if (bitmap == null) {
                         bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_loading);
-                    } else {
-                        bitmap = getBitmapFromUrl(imgStream, reqWidth, reqHeight);
                     }
                     addBitmaptoMemoryCache(urlSpec, bitmap);
                     Message msg = myHandler.obtainMessage();
