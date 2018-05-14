@@ -1,7 +1,6 @@
 package com.example.r.lifehelper.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +72,7 @@ public class BookCategoryAdapter extends BaseAdapter {
         TextView tvCategory;
         private View itemView;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             itemView = view;
             ivCategory = itemView.findViewById(R.id.iv_book_category);
             tvCategory = itemView.findViewById(R.id.tv_book_category);

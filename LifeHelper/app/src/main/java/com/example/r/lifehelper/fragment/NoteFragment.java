@@ -3,6 +3,7 @@ package com.example.r.lifehelper.fragment;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -62,6 +64,7 @@ public class NoteFragment extends Fragment {
         ctlTitle.setTitle(mNote.getTitle());
         etContent = mView.findViewById(R.id.note_content);
         etContent.setText(mNote.getContent());
+        showSoftInputFromWindow(getActivity(),etContent);
 
         fab = mView.findViewById(R.id.fab_save);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -161,6 +164,14 @@ public class NoteFragment extends Fragment {
             }
         });
         return mView;
+    }
+
+    /*当输入时显示软键盘*/
+    private static void showSoftInputFromWindow(Activity activity, EditText editText) {
+        editText.setFocusable(true);
+        editText.setFocusableInTouchMode(true);
+        editText.requestFocus();
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
     private void initToolbar() {

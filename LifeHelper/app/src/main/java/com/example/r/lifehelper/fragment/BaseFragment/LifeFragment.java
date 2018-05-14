@@ -1,16 +1,24 @@
 package com.example.r.lifehelper.fragment.BaseFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.r.lifehelper.R;
+import com.example.r.lifehelper.activity.SearchActivity;
 import com.example.r.lifehelper.fragment.BookListFragment;
 import com.example.r.lifehelper.fragment.MovieListFragment;
 
@@ -20,6 +28,38 @@ public class LifeFragment extends Fragment {
     private TabLayout mTabLayout;
     /*是否初始化*/
     private boolean isInit = false;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_life,menu);
+        MenuItem menuItem = menu.findItem(R.id.menu_search);
+        SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        mSearchView.setMaxWidth(1200);
+        mSearchView.setQueryHint("请输入搜索的书名");
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query != null){
+                    Intent intent = SearchActivity.newIntent(getActivity(), query);
+                    startActivity(intent);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
 
     @Nullable
     @Override

@@ -49,8 +49,8 @@ public class BookDetailFragment extends Fragment {
         Book book = BookLab.getBookLab(getActivity()).getBook(uuid);
         try {
             mBook = new BookDetailAsyncTask().execute(book.getUrl()).get();
-            mBook.setTitle(book.getTitle());
-            mBook.setImageUrl(book.getImageUrl());
+            mBook.setTitle(mBook.getTitle());
+            mBook.setImageUrl(mBook.getImageUrl());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

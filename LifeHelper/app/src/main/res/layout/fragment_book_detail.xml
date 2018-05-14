@@ -100,6 +100,7 @@
                     android:layout_marginLeft="5dp"
                     android:background="@color/colorLightPink"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
+                    style="@style/ChineseTextStyle"
                     android:text="@string/detail_read"
                     android:textColor="#333366" />
 
@@ -110,6 +111,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@color/colorWheat"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
+                    style="@style/ChineseTextStyle"
                     android:text="@string/detail_douban"
                     android:textColor="#333366" />
             </LinearLayout>

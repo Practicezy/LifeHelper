@@ -32,8 +32,7 @@ public class BookChapterAdapter extends RecyclerView.Adapter<BookChapterAdapter.
     @Override
     public ChapterHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(android.R.layout.simple_list_item_1, parent, false);
-        ChapterHolder holder = new ChapterHolder(view);
-        return holder;
+        return new ChapterHolder(view);
     }
 
     @Override
@@ -62,7 +61,7 @@ public class BookChapterAdapter extends RecyclerView.Adapter<BookChapterAdapter.
     class ChapterHolder extends RecyclerView.ViewHolder {
         private TextView mTextView;
 
-        public ChapterHolder(View itemView) {
+        ChapterHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView;
         }

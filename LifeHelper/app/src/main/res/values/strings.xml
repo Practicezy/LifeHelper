@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Life</string>
+    <string name="app_name">晚阅</string>
     <string name="news_fragment">My News</string>
     <string name="life_fragment">My Life</string>
     <string name="ideal_fragment">My Ideal</string>
@@ -25,8 +25,8 @@
     <string name="search_hint">请输入搜索内容</string>
     <string name="detail_author">作者：</string>
     <string name="detail_action">动作：</string>
-    <string name="detail_read">在線閱讀</string>
-    <string name="detail_douban">閲讀記錄</string>
+    <string name="detail_read">在线阅读</string>
+    <string name="detail_douban">阅读记录</string>
     <string name="detail_intro">内容简介：</string>
     <string name="detail_date">更新日期：</string>
     <string name="detail_title">默认标题</string>
@@ -45,4 +45,6 @@
     <string name="note_edit">编辑</string>
     <string name="note_delete">删除</string>
     <string name="note_share">分享</string>
+    <string name="search">search</string>
+    <string name="search_result">搜索结果</string>
 </resources>

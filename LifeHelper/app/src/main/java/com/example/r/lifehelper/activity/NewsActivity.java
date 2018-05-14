@@ -17,8 +17,6 @@ import android.widget.TextView;
 import com.example.r.lifehelper.R;
 
 public class NewsActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
-    private TextView mToolbarTitle;
     private WebView wvNews;
     private ProgressDialog mProgressDialog;
     private static final String EXTRA_NEWS = "news_url";
@@ -78,12 +76,12 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        mToolbar = findViewById(R.id.toolbar);
-        mToolbar.setTitle("");
-        mToolbarTitle = findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText(R.string.news_label);
-        mToolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/yang.ttf"));
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        TextView toolbarTitle = findViewById(R.id.toolbar_title);
+        toolbarTitle.setText(R.string.news_label);
+        toolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/yang.ttf"));
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

@@ -18,16 +18,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsListHolder> {
-    private List<Integer> bgColors = new ArrayList<Integer>(Arrays.asList(R.color.colorLightAccent,
-            R.color.colorLightGreen,R.color.colorLightBlue,R.color.colorLightYellow,R.color.colorLightBlack,
-    R.color.colorLightDarkBlue,R.color.colorLightRed,R.color.colorLightChartreuse,
-            R.color.colorStarBlue,R.color.colorLightOrange));
-    private static final String TAG = "NewsListAdapter";
+    private List<Integer> bgColors = new ArrayList<>(Arrays.asList(R.color.colorLightAccent,
+            R.color.colorLightGreen, R.color.colorLightBlue, R.color.colorLightYellow, R.color.colorLightBlack,
+            R.color.colorLightDarkBlue, R.color.colorLightRed, R.color.colorLightChartreuse,
+            R.color.colorStarBlue, R.color.colorLightOrange));
 
-    private List<Integer> titles = new ArrayList<Integer>(Arrays.asList(R.string.news_top,
-            R.string.news_shehui,R.string.news_guonei,R.string.news_guoji,R.string.news_yule,
-            R.string.news_tiyu,R.string.news_junshi,R.string.news_keji,
-            R.string.news_caijing,R.string.news_shishang));
+    private List<Integer> titles = new ArrayList<>(Arrays.asList(R.string.news_top,
+            R.string.news_shehui, R.string.news_guonei, R.string.news_guoji, R.string.news_yule,
+            R.string.news_tiyu, R.string.news_junshi, R.string.news_keji,
+            R.string.news_caijing, R.string.news_shishang));
 
     private List<String> titles_zh = new ArrayList<>(Arrays.asList("\n" + "头条",
             "\n" + "社会","\n" + "国内","\n" + "国际","\n" + "娱乐","\n" + "体育","\n" + "军事",
@@ -86,7 +85,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsLi
     class NewsListHolder extends RecyclerView.ViewHolder{
         ImageView ivNews;
         TextView tvNews;
-        public NewsListHolder(View itemView) {
+        NewsListHolder(View itemView) {
             super(itemView);
             ivNews = itemView.findViewById(R.id.iv_news_item_img);
             tvNews = itemView.findViewById(R.id.tv_news_item_title);

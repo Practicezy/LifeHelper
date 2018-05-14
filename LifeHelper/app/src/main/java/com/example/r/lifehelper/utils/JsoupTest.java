@@ -1,53 +1,29 @@
 package com.example.r.lifehelper.utils;
 
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 
 public class JsoupTest {
 
     public static void main(String[] args) {
-//        String urlString = HttpUtils.getUrlString("http://baobab.kaiyanapp.com/api/v4/tabs/selected");
-//        try {
-//            JSONObject jsonObject = new JSONObject(urlString);
-//            int count = jsonObject.getInt("count");
-//            JSONArray jsonArray = jsonObject.getJSONArray("itemList");
-//            if (count == 15){
-//                for (int i = 1; i < jsonArray.length(); i++) {
-//                    JSONObject object = jsonArray.getJSONObject(i);
-//                    JSONObject data = object.getJSONObject("data");
-//                    String title = data.getString("title");
-//                    int id = data.getInt("id");
-//                    String description = data.getString("description");
-//                    System.out.println("title = " + title);
-//                    System.out.println("id = " + id);
-//                    System.out.println("description = " + description);
-//                }
-//            }else {
-//                for (int i = 0; i < jsonArray.length(); i++) {
-//
-//                }
-//            }
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            Document doc = Jsoup.connect("https://www.qisuu.la/du/33/33961/").timeout(3000).get();
-//            Elements info = doc.select("div[id=info]");
-//            Elements des = info.select("div.info_des");
-//            Elements title = des.select("h1");
-//            System.out.println(title.get(0).ownText());
-//            Elements txt = doc.select("div.txt_cont");
-//            Elements chapter = txt.select("h1");
-//            Elements content = txt.select("div[id=content1]");
-//            System.out.println(chapter.get(0).ownText());
-//            System.out.println(content.get(0).html().replace("<br>","\t").replace("&nbsp"," "));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+        try {
+            Document doc = Jsoup.connect("http://zhannei.baidu.com/cse/site/?cc=qisuu.la&s=6107665092019918800&q=%E6%9C%88").timeout(3000).get();
+            Elements results = doc.select("div[id=results]");
+            Elements h3 = results.select("h3.c-title");
+            Elements a = h3.select("a[href~=.+?/Shtml]");
+            for (int i = 0; i < a.size(); i++) {
+                System.out.println(a.get(i).text());
+                System.out.println(a.get(i).absUrl("href"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 //    public static void main(String[] args) {
 //        try {
 //            Document doc = Jsoup.connect("https://www.qisuu.la/Shtml33638.html").timeout(3000).get();
@@ -72,4 +48,3 @@ public class JsoupTest {
 //            e.printStackTrace();
 //        }
     }
-}

@@ -29,7 +29,6 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     private Context mContext;
     private static final int TYPE_SPECIAL = 0;
     private static final int TYPE_NORMAL = 1;
-    private static final String TAG = "MovieListAdapter";
 
 
     public MovieListAdapter(List<Movie> movieList, Context context) {

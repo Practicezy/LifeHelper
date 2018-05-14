@@ -1,13 +1,11 @@
 package com.example.r.lifehelper.adapter;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.r.lifehelper.R;
-import com.example.r.lifehelper.activity.MainActivity;
 import com.example.r.lifehelper.activity.NoteActivity;
 import com.example.r.lifehelper.bean.Note;
 import com.example.r.lifehelper.bean.NoteLab;
@@ -41,8 +38,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
     @Override
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_notes,parent,false);
-        NoteHolder holder = new NoteHolder(view);
-        return holder;
+        return new NoteHolder(view);
     }
 
     @Override
@@ -65,7 +61,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteHolder> {
             @Override
             public void onClick(View view) {
                 PopupMenu popupMenu = new PopupMenu(mContext, holder.ibMore);
-                Field field = null;
+                Field field;
                 try {
                     field = popupMenu.getClass().getDeclaredField("mPopup");
                     field.setAccessible(true);

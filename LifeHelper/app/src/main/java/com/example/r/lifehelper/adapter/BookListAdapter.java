@@ -35,8 +35,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
     @Override
     public BookListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_list_book, parent, false);
-        BookListHolder holder = new BookListHolder(view);
-        return holder;
+        return new BookListHolder(view);
     }
 
     /*绑定数据*/
@@ -81,7 +80,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookLi
     }
 
     /*对Imageview的资源进行回收*/
-    public void releaseImageViewResource(BookListHolder holder){
+    private void releaseImageViewResource(BookListHolder holder){
         if (holder.ivImg == null){
             return;
         }

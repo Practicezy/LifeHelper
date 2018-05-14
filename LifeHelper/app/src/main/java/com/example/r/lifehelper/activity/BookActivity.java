@@ -15,8 +15,6 @@ import com.example.r.lifehelper.fragment.BookDetailFragment;
 import java.util.UUID;
 
 public class BookActivity extends AppCompatActivity {
-    private android.support.v7.widget.Toolbar mToolbar;
-    private TextView mToolbarTitle;
     private static final String BOOK_EXTRA = "com.example.r.lifehelper.fragment.book_extra";
 
     public static Intent newIntent(Context context, UUID uuid) {
@@ -41,12 +39,12 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        mToolbar = findViewById(R.id.toolbar);
-        mToolbar.setTitle("");
-        mToolbarTitle = findViewById(R.id.toolbar_title);
-        mToolbarTitle.setText(R.string.book_label);
-        mToolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/yang.ttf"));
-        setSupportActionBar(mToolbar);
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        TextView toolbarTitle = findViewById(R.id.toolbar_title);
+        toolbarTitle.setText(R.string.book_label);
+        toolbarTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/yang.ttf"));
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

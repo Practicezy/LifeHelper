@@ -12,7 +12,6 @@ import java.util.concurrent.ExecutionException;
 public class BookLab {
     private static BookLab sBookLab;
     private List<Book> mBooks;
-    private BookListAsyncTask mTask;
     private Context mContext;
 
     public static BookLab getBookLab(Context context) {
@@ -24,19 +23,15 @@ public class BookLab {
 
     private BookLab(Context context) {
         mContext = context;
-        mTask = new BookListAsyncTask();
-        mTask.execute("https://www.qisuu.la/soft/sort010/");
+        BookListAsyncTask task = new BookListAsyncTask();
+        task.execute("https://www.qisuu.la/soft/sort010/");
         try {
-            mBooks = mTask.get();
+            mBooks = task.get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-    }
-
-    public List<Book> getBooks() {
-        return mBooks;
     }
 
     public Book getBook(UUID id) {

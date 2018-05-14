@@ -28,6 +28,7 @@ public class BookDetailAsyncTask extends AsyncTask<String, Void, Book> {
         }
         Elements links = doc.select("div.show");
         Elements detail = links.select("div.detail");
+        Elements title = detail.select("h1");
         Elements author = detail.select("li:contains(作者)");
         Elements date = detail.select("li:contains(日期)");
         Elements imgs = detail.select("img[src]");
@@ -36,6 +37,7 @@ public class BookDetailAsyncTask extends AsyncTask<String, Void, Book> {
         Elements button = links.select("div.showDown");
         Elements a = button.select("a.downButton");
 
+        book.setTitle(title.get(0).ownText().replace("全集",""));
         book.setAuthor(author.get(0).ownText().replace("书籍作者：", ""));
         book.setDate(date.get(0).ownText().replace("更新日期：", ""));
         book.setImageUrl(imgs.get(0).absUrl("src"));

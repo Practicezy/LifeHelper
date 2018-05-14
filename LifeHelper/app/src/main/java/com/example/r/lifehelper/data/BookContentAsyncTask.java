@@ -26,7 +26,7 @@ public class BookContentAsyncTask extends AsyncTask<String, Void, BookChapter> {
             Elements chapter = txt.select("h1");
             Elements content = txt.select("div[id=content1]");
             bookChapter.setChapterTitle(chapter.get(0).ownText());
-            bookChapter.setContent(content.get(0).html().replace("<br>", "\t").replace("&nbsp", " "));
+            bookChapter.setContent(content.get(0).html().replace("<br>", "\n").replace("&nbsp", " "));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.r.lifehelper">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,7 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_new_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name">
@@ -22,17 +24,24 @@
         </activity>
         <activity
             android:name=".activity.NewsActivity"
-            android:parentActivityName=".activity.NewsListActivity" />
+            android:parentActivityName=".activity.NewsListActivity"
+            tools:ignore="UnusedAttribute" />
         <activity
             android:name=".activity.NewsListActivity"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName=".activity.MainActivity"
+            tools:ignore="UnusedAttribute" />
         <activity
             android:name=".activity.BookActivity"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName=".activity.MainActivity"
+            tools:ignore="UnusedAttribute" />
         <activity
             android:name=".activity.VideoActivity"
-            android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.NoteActivity"></activity>
+            android:parentActivityName=".activity.MainActivity"
+            tools:ignore="UnusedAttribute" />
+        <activity android:name=".activity.NoteActivity" />
+        <activity android:name=".activity.SearchActivity"
+            android:parentActivityName=".activity.MainActivity"
+            tools:ignore="UnusedAttribute"/>
     </application>
 
 </manifest>

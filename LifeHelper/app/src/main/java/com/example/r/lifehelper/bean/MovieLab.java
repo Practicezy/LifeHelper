@@ -2,7 +2,6 @@ package com.example.r.lifehelper.bean;
 
 import com.example.r.lifehelper.data.MovieAsyncTask;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
